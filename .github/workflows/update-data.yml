@@ -8,20 +8,20 @@
 #        PUBLICATIONS_CSV_URL = 業績シートのCSV公開URL
 #        AWARDS_CSV_URL       = 受賞シートのCSV公開URL
 #      ヘッダー行は以下の列名にしてください:
-#        publications: year,authors,title,venue,image,paper,doi,video,code,project,news
+#        publications: year,authors,title,publisher,pdf,doi,youtube,code,arxiv,press,media
 #        awards:       year,authors,title,url （recipient,organization 列も後方互換で利用可）
 #      ※ ヘッダーの前後空白や CR は取り込み時に自動で除去します。
 #      ※ AWARDS_CSV_URL 未設定時は既定で当リポジトリ指定のスプレッドシート「Award」シートを使用。
 #
-#      publications の各列:
-#        image   サムネイル。images/publications/ のファイル名、または http から始まるフルURL（空なら非表示）
-#        paper   論文PDF。paper/ のファイル名、または http から始まるフルURL → "Paper" リンク
-#        doi     DOI/出版社ページURL → "DOI" リンク（旧 url 列も後方互換で DOI として表示）
-#        video   動画URL → "Video" リンク
-#        code    コードURL → "Code" リンク
-#        project プロジェクトページURL → "Project" リンク
-#        news    関連ニュースURL → "News" リンク
-#      （リンク列は空欄ならそのリンクは非表示）
+#      publications の各列（リンク列は空欄ならそのリンクは非表示）:
+#        publisher  会議/論文誌名（斜体で表示。旧 venue 列も後方互換）
+#        pdf        論文PDF。paper/ のファイル名、または http から始まるフルURL → "PDF" リンク（旧 paper 列も可）
+#        doi        DOI/出版社ページURL → "DOI" リンク（旧 url 列も後方互換）
+#        youtube    動画URL → "YouTube" リンク（旧 video 列も可）
+#        code       コードURL → "Code" リンク
+#        arxiv      arXiv URL → "arXiv" リンク
+#        press      プレスリリースURL → "Press" リンク
+#        media      メディア記事URL → "Media" リンク
 
 name: Update data from spreadsheet
 

@@ -77,14 +77,15 @@ redirect_from:
     <div class="pub-main">
       {% if p.authors and p.authors != "" %}<div class="pub-authors">{{ p.authors }}</div>{% endif %}
       <div class="pub-title">{{ p.title }}</div>
-      {% if p.venue and p.venue != "" %}<div class="pub-venue">{{ p.venue }}</div>{% endif %}
+      {% assign venue = p.publisher | default: p.venue %}{% if venue and venue != "" %}<div class="pub-venue">{{ venue }}</div>{% endif %}
       <div class="pub-links">
-        {% if p.paper and p.paper != "" %}{% if p.paper contains "http" %}<a href="{{ p.paper }}"{% else %}<a href="{{ base_path }}/paper/{{ p.paper }}"{% endif %} target="_blank" rel="noopener">Paper</a>{% endif %}
+        {% assign pdf = p.pdf | default: p.paper %}{% if pdf and pdf != "" %}{% if pdf contains "http" %}<a href="{{ pdf }}"{% else %}<a href="{{ base_path }}/paper/{{ pdf }}"{% endif %} target="_blank" rel="noopener">PDF</a>{% endif %}
         {% assign doi = p.doi | default: p.url %}{% if doi and doi != "" %}<a href="{{ doi }}" target="_blank" rel="noopener">DOI</a>{% endif %}
-        {% if p.video and p.video != "" %}<a href="{{ p.video }}" target="_blank" rel="noopener">Video</a>{% endif %}
+        {% if p.arxiv and p.arxiv != "" %}<a href="{{ p.arxiv }}" target="_blank" rel="noopener">arXiv</a>{% endif %}
         {% if p.code and p.code != "" %}<a href="{{ p.code }}" target="_blank" rel="noopener">Code</a>{% endif %}
-        {% if p.project and p.project != "" %}<a href="{{ p.project }}" target="_blank" rel="noopener">Project</a>{% endif %}
-        {% if p.news and p.news != "" %}<a href="{{ p.news }}" target="_blank" rel="noopener">News</a>{% endif %}
+        {% assign yt = p.youtube | default: p.video %}{% if yt and yt != "" %}<a href="{{ yt }}" target="_blank" rel="noopener">YouTube</a>{% endif %}
+        {% if p.press and p.press != "" %}<a href="{{ p.press }}" target="_blank" rel="noopener">Press</a>{% endif %}
+        {% if p.media and p.media != "" %}<a href="{{ p.media }}" target="_blank" rel="noopener">Media</a>{% endif %}
       </div>
     </div>
     {% if p.image and p.image != "" %}
