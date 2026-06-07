@@ -1,15 +1,17 @@
 # プロジェクトメンバー。後で写真を images/members/<photo> に差し替えてください。
 # 各リンク（website / x / researchmap）は URL を入れると、その分だけアイコンが表示されます。
 # 空欄（""）にするとそのアイコンは非表示になります。
+# bio: カードにカーソルを乗せると表示される経歴（空欄ならツールチップ非表示）。<br> で改行できます。
 
 - name_ja: "横田 知之"
   name_en: "Tomoyuki Yokota"
   role: "研究開発代表者 (PI)"
-  affiliation: "東京大学 工学系研究科・総合研究機構（准教授）"
+  affiliation: "東京大学大学院工学系研究科 電気系工学専攻 准教授"
   photo: "yokota.jpg"
   website: ""
   x: ""
   researchmap: ""
+  bio: "2008年 東京大学工学部物理工学科卒業。2010年 東京大学大学院工学系研究科物理工学専攻 修士課程修了、2013年 同博士課程修了（博士）。2013年 東京大学工学系研究科 特任助教、2016年 同 講師を経て、2019年より現職。"
 
 - name_ja: "高橋 亮"
   name_en: "Ryo Takahashi"
@@ -19,6 +21,7 @@
   website: ""
   x: ""
   researchmap: ""
+  bio: ""
 
 - name_ja: "野田 聡人"
   name_en: "Akihito Noda"
@@ -28,6 +31,7 @@
   website: ""
   x: ""
   researchmap: ""
+  bio: ""
 
 - name_ja: "石田 繁巳"
   name_en: "Shigemi Ishida"
@@ -37,3 +41,4 @@
   website: ""
   x: ""
   researchmap: ""
+  bio: ""

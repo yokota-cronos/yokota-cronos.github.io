@@ -45,7 +45,48 @@
     justify-content: center;
     margin: 1.5em 0 2em;
   }
-  .member-card { flex: 0 1 200px; text-align: center; }
+  .member-card { flex: 0 1 200px; text-align: center; position: relative; }
+  .member-card.has-bio { cursor: help; }
+  .bio-hint { font-size: 0.8em; color: #1565c0; }
+
+  /* Career tooltip shown on hover/focus */
+  .member-bio {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% - 60px);
+    transform: translate(-50%, 8px);
+    width: 260px;
+    max-width: 78vw;
+    background: #222b36;
+    color: #f4f6f8;
+    text-align: left;
+    font-size: 0.78em;
+    line-height: 1.6;
+    padding: 0.8em 1em;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    z-index: 30;
+    pointer-events: none;
+  }
+  .member-bio::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 7px solid transparent;
+    border-top-color: #222b36;
+  }
+  .member-card.has-bio:hover .member-bio,
+  .member-card.has-bio:focus .member-bio,
+  .member-card.has-bio:focus-within .member-bio {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+  }
   .member-photo {
     width: 150px;
     height: 150px;

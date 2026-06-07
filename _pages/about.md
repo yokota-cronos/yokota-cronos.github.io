@@ -42,9 +42,10 @@ redirect_from:
 
 <div class="member-grid">
 {% for m in site.data.members %}
-  <div class="member-card">
+  <div class="member-card{% if m.bio and m.bio != '' %} has-bio{% endif %}" tabindex="0">
+    {% if m.bio and m.bio != "" %}<div class="member-bio" role="tooltip">{{ m.bio }}</div>{% endif %}
     <img class="member-photo" src="{{ base_path }}/images/members/{{ m.photo }}" alt="{{ m.name_ja }}">
-    <div class="member-name">{{ m.name_ja }}</div>
+    <div class="member-name">{{ m.name_ja }}{% if m.bio and m.bio != "" %} <span class="bio-hint" title="経歴を表示">ⓘ</span>{% endif %}</div>
     <div class="member-name-en">{{ m.name_en }}</div>
     <div class="member-role">{{ m.role }}</div>
     <div class="member-aff">{{ m.affiliation }}</div>
