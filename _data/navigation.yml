@@ -5,13 +5,13 @@ main:
     url: /#news
 
   - title: "Team"
-    url: /#members
+    url: /#team
 
-  - title: "Publications"
-    url: /#publications
+  - title: "Publication"
+    url: /#publication
 
-  - title: "Awards"
-    url: /#awards
+  - title: "Award"
+    url: /#award
 
   - title: "Location"
     url: /#location

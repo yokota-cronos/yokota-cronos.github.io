@@ -8,8 +8,18 @@
 #        PUBLICATIONS_CSV_URL = 業績シートのCSV公開URL
 #        AWARDS_CSV_URL       = 受賞シートのCSV公開URL
 #      ヘッダー行は以下の列名にしてください:
-#        publications: year,authors,title,venue,url
+#        publications: year,authors,title,venue,image,paper,doi,video,code,project,news
 #        awards:       year,recipient,title,organization,url
+#
+#      publications の各列:
+#        image   サムネイル。images/publications/ のファイル名、または http から始まるフルURL（空なら非表示）
+#        paper   論文PDF。paper/ のファイル名、または http から始まるフルURL → "Paper" リンク
+#        doi     DOI/出版社ページURL → "DOI" リンク（旧 url 列も後方互換で DOI として表示）
+#        video   動画URL → "Video" リンク
+#        code    コードURL → "Code" リンク
+#        project プロジェクトページURL → "Project" リンク
+#        news    関連ニュースURL → "News" リンク
+#      （リンク列は空欄ならそのリンクは非表示）
 
 name: Update data from spreadsheet
 

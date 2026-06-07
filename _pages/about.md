@@ -44,12 +44,11 @@ redirect_from:
 </div>
 {% if news.size > 4 %}<p class="news-more"><a href="{{ base_path }}/news/">View all news →</a></p>{% endif %}
 
-<h2 id="members">Team</h2>
+<h2 id="team">Team</h2>
 
 <div class="member-grid">
 {% for m in site.data.members %}
   <div class="member-card{% if m.bio and m.bio != '' %} has-bio{% endif %}" tabindex="0">
-    {% if m.bio and m.bio != "" %}<div class="member-bio" role="tooltip">{{ m.bio }}</div>{% endif %}
     <img class="member-photo" loading="lazy" src="{{ base_path }}/images/members/{{ m.photo }}" alt="{{ m.name_ja }}">
     <div class="member-name">{{ m.name_ja }}{% if m.bio and m.bio != "" %} <span class="bio-hint" title="経歴を表示">ⓘ</span>{% endif %}</div>
     <div class="member-name-en">{{ m.name_en }}</div>
@@ -62,23 +61,38 @@ redirect_from:
       {% if m.x and m.x != "" %}<a class="ico ico-x" href="{{ m.x }}" title="X" target="_blank" rel="noopener"><i class="fab fa-x-twitter" aria-hidden="true"></i><span class="sr-only">X</span></a>{% endif %}
       {% if m.linkedin and m.linkedin != "" %}<a class="ico ico-li" href="{{ m.linkedin }}" title="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a>{% endif %}
     </div>
+    {% if m.bio and m.bio != "" %}<div class="member-bio" role="tooltip">{{ m.bio }}</div>{% endif %}
   </div>
 {% endfor %}
 </div>
 
-<h2 id="publications">Publications</h2>
+<h2 id="publication">Publication</h2>
 
 {% assign pubs = site.data.publications | sort: "year" | reverse %}
-<ul class="pub-list">
+<div class="pub-list2">
 {% for p in pubs %}
-  <li>
-    <span class="pub-year">{{ p.year }}</span>
-    <span class="pub-body">{{ p.authors }}, {% if p.url and p.url != "" %}<a href="{{ p.url }}" target="_blank" rel="noopener"><strong>{{ p.title }}</strong></a>{% else %}<strong>{{ p.title }}</strong>{% endif %}{% if p.venue and p.venue != "" %}, <em>{{ p.venue }}</em>{% endif %}.</span>
-  </li>
+  <div class="pub-entry">
+    <div class="pub-main">
+      {% if p.authors and p.authors != "" %}<div class="pub-authors">{{ p.authors }}</div>{% endif %}
+      <div class="pub-title">{{ p.title }}</div>
+      {% if p.venue and p.venue != "" %}<div class="pub-venue">{{ p.venue }}</div>{% endif %}
+      <div class="pub-links">
+        {% if p.paper and p.paper != "" %}{% if p.paper contains "http" %}<a href="{{ p.paper }}"{% else %}<a href="{{ base_path }}/paper/{{ p.paper }}"{% endif %} target="_blank" rel="noopener">Paper</a>{% endif %}
+        {% assign doi = p.doi | default: p.url %}{% if doi and doi != "" %}<a href="{{ doi }}" target="_blank" rel="noopener">DOI</a>{% endif %}
+        {% if p.video and p.video != "" %}<a href="{{ p.video }}" target="_blank" rel="noopener">Video</a>{% endif %}
+        {% if p.code and p.code != "" %}<a href="{{ p.code }}" target="_blank" rel="noopener">Code</a>{% endif %}
+        {% if p.project and p.project != "" %}<a href="{{ p.project }}" target="_blank" rel="noopener">Project</a>{% endif %}
+        {% if p.news and p.news != "" %}<a href="{{ p.news }}" target="_blank" rel="noopener">News</a>{% endif %}
+      </div>
+    </div>
+    {% if p.image and p.image != "" %}
+    <div class="pub-thumb">{% if p.image contains "http" %}<img loading="lazy" src="{{ p.image }}" alt="">{% else %}<img loading="lazy" src="{{ base_path }}/images/publications/{{ p.image }}" alt="">{% endif %}</div>
+    {% endif %}
+  </div>
 {% endfor %}
-</ul>
+</div>
 
-<h2 id="awards">Awards</h2>
+<h2 id="award">Award</h2>
 
 {% assign awards = site.data.awards | sort: "year" | reverse %}
 <ul class="pub-list">
