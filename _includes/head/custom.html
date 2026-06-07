@@ -48,11 +48,15 @@
     position: relative;
     width: 100%;
     aspect-ratio: 2550 / 827;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    margin: 0 0 1.8em;
+    margin: 0.3em 0 2em;
     background: #0b3d91;
+    /* 立体感（浮き上がるような影） */
+    box-shadow: 0 14px 32px rgba(0,0,0,0.24), 0 4px 10px rgba(0,0,0,0.14);
   }
+  /* トップ画像があるページ（ホーム）ではページ見出しを隠す */
+  .page__inner-wrap:has(.hero-slideshow) .page__title { display: none; }
   .hero-slide {
     position: absolute;
     inset: 0;
@@ -423,7 +427,7 @@
   function stripHash() {
     if (location.hash) history.replaceState(null, '', location.pathname + location.search);
   }
-  // キャプチャ段階で先に処理し、テーマの smooth-scroll が # を付け直すのを防ぐ
+  /* キャプチャ段階で先に処理し、テーマの smooth-scroll が # を付け直すのを防ぐ */
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href*="#"]');
     if (!a) return;
@@ -431,13 +435,13 @@
     var i = href.indexOf('#');
     if (i < 0) return;
     var id = href.slice(i + 1);
-    if (!id || !document.getElementById(id)) return; // 別ページのアンカー等はそのまま
+    if (!id || !document.getElementById(id)) return; /* 別ページのアンカー等はそのまま */
     e.preventDefault();
     e.stopImmediatePropagation();
     scrollToId(id);
     stripHash();
   }, true);
-  // 何かが # を付けても即座に消す（保険）
+  /* 何かが # を付けても即座に消す（保険） */
   window.addEventListener('hashchange', stripHash);
   window.addEventListener('load', function () {
     if (location.hash && location.hash.length > 1) {
@@ -445,7 +449,7 @@
       stripHash();
     }
   });
-  // トップのスライドショー: 画像を交互にクロスフェード
+  /* トップのスライドショー: 画像を交互にクロスフェード */
   document.addEventListener('DOMContentLoaded', function () {
     var slides = document.querySelectorAll('.hero-slide');
     if (slides.length < 2) return;
