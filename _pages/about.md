@@ -112,8 +112,8 @@ redirect_from:
 <div class="loc-grid">
   <div class="loc-card">
     <span class="loc-badge">メイン拠点 / Main</span>
-    <a class="loc-map-link" href="https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E5%A4%A7%E5%AD%A6%20%E6%9F%8F%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%91%E3%82%B9%20%E7%AC%AC2%E7%B7%8F%E5%90%88%E7%A0%94%E7%A9%B6%E6%A3%9F" target="_blank" rel="noopener" title="Google マップで開く"><iframe class="loc-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-      src="https://maps.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E5%A4%A7%E5%AD%A6%20%E6%9F%8F%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%91%E3%82%B9%20%E7%AC%AC2%E7%B7%8F%E5%90%88%E7%A0%94%E7%A9%B6%E6%A3%9F&z=16&output=embed"></iframe></a>
+    <a class="loc-map-link" href="https://maps.app.goo.gl/PxrPWSs3PryMg9fM9" target="_blank" rel="noopener" title="Google マップで開く"><iframe class="loc-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      src="https://maps.google.com/maps?q=35.9034904,139.9385322&z=17&output=embed"></iframe></a>
     <div class="loc-name">東京大学 柏キャンパス</div>
     <div class="loc-addr">〒277-8568 千葉県柏市柏の葉5-1-5<br>第２総合研究棟 117号室</div>
   </div>
