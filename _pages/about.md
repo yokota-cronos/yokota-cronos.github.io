@@ -33,7 +33,7 @@ redirect_from:
 
 {% assign news = site.data.news | sort: "key" | reverse %}
 <div class="news-grid">
-{% for n in news limit:5 %}
+{% for n in news limit:4 %}
   {% if n.url and n.url != "" %}<a class="news-card" href="{{ n.url }}" target="_blank" rel="noopener">{% else %}<div class="news-card">{% endif %}
     {% if n.image and n.image != "" %}<img class="news-thumb" src="{{ base_path }}/images/news/{{ n.image }}" alt="">{% else %}<div class="news-thumb news-thumb--ph"></div>{% endif %}
     <div class="news-card-body">
@@ -44,7 +44,7 @@ redirect_from:
   {% if n.url and n.url != "" %}</a>{% else %}</div>{% endif %}
 {% endfor %}
 </div>
-{% if news.size > 5 %}<p class="news-more"><a href="{{ base_path }}/news/">View all news →</a></p>{% endif %}
+{% if news.size > 4 %}<p class="news-more"><a href="{{ base_path }}/news/">View all news →</a></p>{% endif %}
 
 <h2 id="members">Team</h2>
 
