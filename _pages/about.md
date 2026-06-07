@@ -11,9 +11,9 @@ redirect_from:
 
 {% include base_path %}
 
-<div class="hero">
-  <p class="hero-program">JST CRONOS 2025 · Area 1 (PO: Nakao)</p>
-  <h1 class="hero-title">Full-body Wireless Data and Power Networking</h1>
+<div class="hero-slideshow" aria-label="プロジェクト写真">
+  <img class="hero-slide is-active" src="{{ base_path }}/images/hero/front1.jpg" alt="">
+  <img class="hero-slide" loading="lazy" src="{{ base_path }}/images/hero/front2.jpg" alt="">
 </div>
 
 <h2 id="news">News</h2>
