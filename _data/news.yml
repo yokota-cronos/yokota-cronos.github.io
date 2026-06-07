@@ -8,10 +8,10 @@
 # ホームには最新5件を表示し、全件は /news/ ページに表示されます。
 # ※「（サンプル）」の項目は内容を差し替えてください。
 
-- date: "2026-06"
-  title: "Project website launched"
-  text: "本プロジェクトの公式Webサイトを公開しました。"
-  image: ""
+- date: "2026-06-04"
+  title: "IEEE RA-L 2025 Best Paper Award を受賞"
+  text: "論文「Joint-Repositionable Inner-Wireless Planar Snake Robot」が IEEE Robotics and Automation Letters (RA-L) 2025 Best Paper Award を受賞しました。"
+  image: "ral_award.jpg"
   url: ""
 
 - date: "2025-09"
