@@ -80,6 +80,26 @@
   .grand-challenge { margin: 1em 0; }
   .grand-challenge .en { display: block; margin-top: 0.7em; font-size: 0.9em; color: #555; }
 
+  /* コンセプト図 2枚並べ（クリックで論文へ） */
+  .concept-figs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    margin: 1.2em 0;
+  }
+  .concept-fig {
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .concept-fig:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
+  .concept-fig img { width: 100%; display: block; }
+  @media (max-width: 600px) {
+    .concept-figs { grid-template-columns: 1fr; }
+  }
+
   .keywords {
     font-size: 0.8em;
     color: #5b6b7b;

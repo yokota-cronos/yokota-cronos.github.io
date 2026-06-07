@@ -41,6 +41,11 @@ redirect_from:
 
 <p class="keywords">キーワード： 生体データ通信、全身無線通信・給電服、メアンダコイル、二次元無線技術、スキンエレクトロニクス、NFC VHBR（高速NFC）</p>
 
+<div class="concept-figs">
+  <a class="concept-fig" href="https://arxiv.org/abs/2503.13240" target="_blank" rel="noopener"><img loading="lazy" src="{{ base_path }}/images/concept/concept1.jpg" alt="皮膚近傍に電磁界を閉じ込める「全身無線通信・給電服」"></a>
+  <a class="concept-fig" href="https://www.nature.com/articles/s41928-019-0354-7" target="_blank" rel="noopener"><img loading="lazy" src="{{ base_path }}/images/concept/concept2.jpg" alt="医療インフラを病院から日常へ"></a>
+</div>
+
 <div class="ext-links">
   <a class="ext-gh" href="https://github.com/yokota-cronos" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span></a>
   <a class="ext-cronos" href="https://www.jst.go.jp/kisoken/cronos/" target="_blank" rel="noopener" title="JST CRONOS"><img src="{{ base_path }}/images/cronos_logo.jpg" alt="JST CRONOS"></a>
