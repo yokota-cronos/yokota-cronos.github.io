@@ -91,7 +91,7 @@ redirect_from:
 {% endfor %}
 </ul>
 
-<h2 id="locations">Locations</h2>
+<h2 id="locations">Location</h2>
 
 <div class="loc-grid">
   <div class="loc-card">
