@@ -16,18 +16,15 @@ redirect_from:
   <h1 class="hero-title">Full-body Wireless Data and Power Networking</h1>
 </div>
 
-<h2 id="overview">Overview</h2>
+<span id="overview"></span>
 
 皮膚に密着する「スキンイメージャー」の大容量生体データを半日以上クラウドへ連続ストリーミングする、服型の生体データ通信インフラを実現します。周囲の空間とアイソレートした服型の二次元無線通信・給電インフラを、物理層から MAC 層まで設計します。
 
-<p class="grand-challenge">
-5〜6 つの「スキンイメージャー」を半日以上連続駆動するために、50 Mbps 級のセキュアな無線通信と 5 W 級の安全な給電ができる「全身無線通信・給電服」を実現する。<br>
-<span class="en">We realize "full-body wireless data and power clothing" capable of secure wireless communication at 50 Mbps and safe wireless power at 5 W, to continuously operate "skin imagers" around the body.</span>
-</p>
+<p class="grand-challenge">5〜6 つの「スキンイメージャー」を半日以上連続駆動するために、50 Mbps 級のセキュアな無線通信と 5 W 級の安全な給電ができる「全身無線通信・給電服」を実現します。</p>
 
 病後の通院治療から日常の予防医療へ。病院インフラの分散化や過疎地・災害現場での代替医療、二次元無線技術×スキンエレクトロニクスの人材育成を目指します。
 
-<p class="keywords">キーワード： 生体データ通信、全身無線通信・給電服、メアンダコイル、サーフェス型無線、スキンデバイス</p>
+<p class="keywords">キーワード： 生体データ通信、全身無線通信・給電服、メアンダコイル、サーフェス型無線、スキンデバイス、NFC VHBR</p>
 
 <h2 id="news">News</h2>
 
