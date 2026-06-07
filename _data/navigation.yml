@@ -1,9 +1,6 @@
 # ヘッダーのナビゲーション（1ページ構成の各セクションへのアンカー）
 
 main:
-  - title: "Overview"
-    url: /#overview
-
   - title: "News"
     url: /#news
 
