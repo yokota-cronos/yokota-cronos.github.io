@@ -9,7 +9,9 @@
 #        AWARDS_CSV_URL       = 受賞シートのCSV公開URL
 #      ヘッダー行は以下の列名にしてください:
 #        publications: year,authors,title,venue,image,paper,doi,video,code,project,news
-#        awards:       year,recipient,title,organization,url
+#        awards:       year,authors,title,url （recipient,organization 列も後方互換で利用可）
+#      ※ ヘッダーの前後空白や CR は取り込み時に自動で除去します。
+#      ※ AWARDS_CSV_URL 未設定時は既定で当リポジトリ指定のスプレッドシート「Award」シートを使用。
 #
 #      publications の各列:
 #        image   サムネイル。images/publications/ のファイル名、または http から始まるフルURL（空なら非表示）
@@ -41,18 +43,26 @@ jobs:
       - name: Download CSVs from spreadsheet
         env:
           PUBLICATIONS_CSV_URL: ${{ vars.PUBLICATIONS_CSV_URL }}
-          AWARDS_CSV_URL: ${{ vars.AWARDS_CSV_URL }}
+          # 未設定なら下記スプレッドシートの「Award」シートを使う
+          AWARDS_CSV_URL: ${{ vars.AWARDS_CSV_URL || 'https://docs.google.com/spreadsheets/d/1bHJfQ9qKrqRu0MSns7lOH6VJq6RyZdECyhNP_HsG1Pc/gviz/tq?tqx=out:csv&sheet=Award' }}
         run: |
           set -e
+          # ダウンロードした CSV を正規化: CR 除去 + ヘッダー行の余分な空白を除去
+          clean() {
+            sed -i 's/\r$//' "$1"
+            sed -i '1{s/[[:space:]]*"[[:space:]]*/"/g; s/[[:space:]]*,[[:space:]]*/,/g; s/^[[:space:]]*//; s/[[:space:]]*$//}' "$1"
+          }
           if [ -n "$PUBLICATIONS_CSV_URL" ]; then
             echo "Fetching publications..."
             curl -sSL "$PUBLICATIONS_CSV_URL" -o _data/publications.csv
+            clean _data/publications.csv
           else
             echo "PUBLICATIONS_CSV_URL not set; skipping."
           fi
           if [ -n "$AWARDS_CSV_URL" ]; then
             echo "Fetching awards..."
             curl -sSL "$AWARDS_CSV_URL" -o _data/awards.csv
+            clean _data/awards.csv
           else
             echo "AWARDS_CSV_URL not set; skipping."
           fi

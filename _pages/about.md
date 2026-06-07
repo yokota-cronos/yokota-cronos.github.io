@@ -101,7 +101,7 @@ redirect_from:
 {% for a in awards %}
   <li>
     <span class="pub-year">{{ a.year }}</span>
-    <span class="pub-body">{% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener"><strong>{{ a.title }}</strong></a>{% else %}<strong>{{ a.title }}</strong>{% endif %}{% if a.recipient and a.recipient != "" %} — {{ a.recipient }}{% endif %}{% if a.organization and a.organization != "" %}（{{ a.organization }}）{% endif %}</span>
+    {% assign who = a.recipient | default: a.authors %}<span class="pub-body">{% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener"><strong>{{ a.title }}</strong></a>{% else %}<strong>{{ a.title }}</strong>{% endif %}{% if who and who != "" %} — {{ who }}{% endif %}{% if a.organization and a.organization != "" %}（{{ a.organization }}）{% endif %}</span>
   </li>
 {% endfor %}
 </ul>
