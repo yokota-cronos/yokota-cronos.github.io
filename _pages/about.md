@@ -117,19 +117,19 @@ redirect_from:
   <div class="loc-card">
     <iframe class="loc-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
       src="https://maps.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%87%E4%BA%AC%E5%8C%BA%E5%BC%A5%E7%94%9F2-11-16+%E6%9D%B1%E4%BA%AC%E5%A4%A7%E5%AD%A6%E6%9C%AC%E9%83%B7%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%91%E3%82%B9+%E5%B7%A5%E5%AD%A6%E9%83%A810%E5%8F%B7%E9%A4%A8&z=16&output=embed"></iframe>
-    <div class="loc-name">東京大学 本郷キャンパス（浅野地区）</div>
+    <div class="loc-name">東京大学 本郷キャンパス（浅野地区）横田研究室</div>
     <div class="loc-addr">〒113-0032 東京都文京区弥生2-11-16<br>工学部10号館 3F 330号室</div>
   </div>
   <div class="loc-card">
     <iframe class="loc-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
       src="https://maps.google.com/maps?q=%E9%AB%98%E7%9F%A5%E7%9C%8C%E9%A6%99%E7%BE%8E%E5%B8%82%E5%9C%9F%E4%BD%90%E5%B1%B1%E7%94%B0%E7%94%BA%E5%AE%AE%E3%83%8E%E5%8F%A3185+%E9%AB%98%E7%9F%A5%E5%B7%A5%E7%A7%91%E5%A4%A7%E5%AD%A6&z=15&output=embed"></iframe>
-    <div class="loc-name">高知工科大学 システム工学群</div>
+    <div class="loc-name">高知工科大学 システム工学群 野田研究室</div>
     <div class="loc-addr">〒782-8502 高知県香美市土佐山田町宮ノ口185<br>野田 聡人</div>
   </div>
   <div class="loc-card">
     <iframe class="loc-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
       src="https://maps.google.com/maps?q=%E5%8C%97%E6%B5%B7%E9%81%93%E5%87%BD%E9%A4%A8%E5%B8%82%E4%BA%80%E7%94%B0%E4%B8%AD%E9%87%8E%E7%94%BA116-2+%E5%85%AC%E7%AB%8B%E3%81%AF%E3%81%93%E3%81%A0%E3%81%A6%E6%9C%AA%E6%9D%A5%E5%A4%A7%E5%AD%A6&z=15&output=embed"></iframe>
-    <div class="loc-name">公立はこだて未来大学 システム情報科学部</div>
+    <div class="loc-name">公立はこだて未来大学 システム情報科学部 石田研究室</div>
     <div class="loc-addr">〒041-8655 北海道函館市亀田中野町116-2<br>石田 繁巳</div>
   </div>
 </div>
