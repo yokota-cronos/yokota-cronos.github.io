@@ -50,9 +50,10 @@ redirect_from:
     <div class="member-role">{{ m.role }}</div>
     <div class="member-aff">{{ m.affiliation }}</div>
     <div class="member-links">
-      {% if m.website and m.website != "" %}<a href="{{ m.website }}" title="Website" target="_blank" rel="noopener"><i class="fas fa-globe" aria-hidden="true"></i><span class="sr-only">Website</span></a>{% endif %}
-      {% if m.x and m.x != "" %}<a href="{{ m.x }}" title="X" target="_blank" rel="noopener"><i class="fab fa-x-twitter" aria-hidden="true"></i><span class="sr-only">X</span></a>{% endif %}
-      {% if m.researchmap and m.researchmap != "" %}<a href="{{ m.researchmap }}" title="researchmap" target="_blank" rel="noopener"><i class="fas fa-address-card" aria-hidden="true"></i><span class="sr-only">researchmap</span></a>{% endif %}
+      {% if m.researchmap and m.researchmap != "" %}<a class="ico ico-rmap" href="{{ m.researchmap }}" title="researchmap" target="_blank" rel="noopener"><span class="rmap-txt" aria-hidden="true">rm</span><span class="sr-only">researchmap</span></a>{% endif %}
+      {% if m.website and m.website != "" %}<a class="ico ico-web" href="{{ m.website }}" title="Webpage" target="_blank" rel="noopener"><i class="fas fa-globe" aria-hidden="true"></i><span class="sr-only">Webpage</span></a>{% endif %}
+      {% if m.x and m.x != "" %}<a class="ico ico-x" href="{{ m.x }}" title="X" target="_blank" rel="noopener"><i class="fab fa-x-twitter" aria-hidden="true"></i><span class="sr-only">X</span></a>{% endif %}
+      {% if m.linkedin and m.linkedin != "" %}<a class="ico ico-li" href="{{ m.linkedin }}" title="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a>{% endif %}
     </div>
   </div>
 {% endfor %}

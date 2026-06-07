@@ -107,21 +107,30 @@
   .member-name-en { font-size: 0.85em; color: #777; }
   .member-role { font-size: 0.85em; color: #1565c0; margin-top: 0.3em; }
   .member-aff { font-size: 0.8em; color: #555; margin-top: 0.2em; line-height: 1.4; }
-  .member-links { margin-top: 0.6em; }
-  .member-links a {
+  .member-links {
+    margin-top: 0.7em;
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+  }
+  .member-links .ico {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 34px; height: 34px;
-    margin: 0 3px;
-    border-radius: 50%;
-    background: #1565c0;
+    border-radius: 8px;
     color: #fff !important;
     text-decoration: none;
-    transition: background 0.15s ease, transform 0.15s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+    transition: filter 0.15s ease, transform 0.15s ease;
   }
-  .member-links a:hover { background: #0b3d91; transform: translateY(-2px); }
-  .member-links i { font-size: 0.95em; }
+  .member-links .ico:hover { filter: brightness(1.12); transform: translateY(-2px); }
+  .member-links .ico i { font-size: 1.0em; }
+  .ico-rmap { background: #008e9b; }            /* researchmap (teal) */
+  .ico-web  { background: #5b7184; }            /* webpage (slate) */
+  .ico-x    { background: #000000; }            /* X */
+  .ico-li   { background: #0a66c2; }            /* LinkedIn */
+  .rmap-txt { font-weight: 700; font-size: 0.82em; letter-spacing: 0.02em; }
 
   /* Publications / Awards list */
   .data-note { font-size: 0.82em; color: #888; }
