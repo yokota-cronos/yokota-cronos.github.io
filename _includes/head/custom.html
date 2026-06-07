@@ -105,9 +105,9 @@
   .member-bio {
     position: absolute;
     left: 50%;
-    top: 100%;
-    margin-top: 10px;
-    transform: translate(-50%, -8px);
+    bottom: 100%;
+    margin-bottom: 10px;
+    transform: translate(-50%, 8px);
     width: 280px;
     max-width: 80vw;
     max-height: 60vh;
@@ -129,11 +129,11 @@
   .member-bio::after {
     content: "";
     position: absolute;
-    bottom: 100%;
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     border: 7px solid transparent;
-    border-bottom-color: #222b36;
+    border-top-color: #222b36;
   }
   /* 経歴は写真にマウスを乗せたときのみ表示（写真とは重ならない位置に出す） */
   .member-card.has-bio .member-photo:hover ~ .member-bio,
@@ -144,7 +144,7 @@
   }
   .member-photo {
     width: 100%;
-    max-width: 150px;
+    max-width: 195px;
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: 50%;
