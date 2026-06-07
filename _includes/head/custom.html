@@ -379,6 +379,10 @@
     window.scrollTo({ top: top, behavior: 'smooth' });
     return true;
   }
+  function stripHash() {
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  }
+  // キャプチャ段階で先に処理し、テーマの smooth-scroll が # を付け直すのを防ぐ
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href*="#"]');
     if (!a) return;
@@ -388,14 +392,16 @@
     var id = href.slice(i + 1);
     if (!id || !document.getElementById(id)) return; // 別ページのアンカー等はそのまま
     e.preventDefault();
+    e.stopImmediatePropagation();
     scrollToId(id);
-    history.replaceState(null, '', location.pathname + location.search);
-  });
+    stripHash();
+  }, true);
+  // 何かが # を付けても即座に消す（保険）
+  window.addEventListener('hashchange', stripHash);
   window.addEventListener('load', function () {
     if (location.hash && location.hash.length > 1) {
-      if (scrollToId(location.hash.slice(1))) {
-        history.replaceState(null, '', location.pathname + location.search);
-      }
+      scrollToId(location.hash.slice(1));
+      stripHash();
     }
   });
 })();
