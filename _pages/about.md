@@ -85,7 +85,7 @@ redirect_from:
         {% if p.code and p.code != "" %}<a href="{{ p.code }}" target="_blank" rel="noopener">Code</a>{% endif %}
         {% assign yt = p.youtube | default: p.video %}{% if yt and yt != "" %}<a href="{{ yt }}" target="_blank" rel="noopener">YouTube</a>{% endif %}
         {% if p.press and p.press != "" %}<a href="{{ p.press }}" target="_blank" rel="noopener">Press</a>{% endif %}
-        {% if p.media and p.media != "" %}<a href="{{ p.media }}" target="_blank" rel="noopener">Media</a>{% endif %}
+        {% if p.media and p.media != "" %}{% assign mhost = p.media | split: "//" | last | split: "/" | first | replace: "www.","" %}{% assign mname = mhost | split: "." | first | capitalize %}<a href="{{ p.media }}" target="_blank" rel="noopener">Media ({{ mname }})</a>{% endif %}
       </div>
     </div>
     {% if p.image and p.image != "" %}
@@ -112,8 +112,8 @@ redirect_from:
 <div class="loc-grid">
   <div class="loc-card">
     <span class="loc-badge">メイン拠点 / Main</span>
-    <a class="loc-map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%8D%83%E8%91%89%E7%9C%8C%E6%9F%8F%E5%B8%82%E6%9F%8F%E3%81%AE%E8%91%895-1-5+%E6%9D%B1%E4%BA%AC%E5%A4%A7%E5%AD%A6%E6%9F%8F%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%91%E3%82%B9" target="_blank" rel="noopener" title="Google マップで開く"><iframe class="loc-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-      src="https://maps.google.com/maps?q=%E5%8D%83%E8%91%89%E7%9C%8C%E6%9F%8F%E5%B8%82%E6%9F%8F%E3%81%AE%E8%91%895-1-5+%E6%9D%B1%E4%BA%AC%E5%A4%A7%E5%AD%A6%E6%9F%8F%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%91%E3%82%B9&z=16&output=embed"></iframe></a>
+    <a class="loc-map-link" href="https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E5%A4%A7%E5%AD%A6%20%E6%9F%8F%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%91%E3%82%B9%20%E7%AC%AC2%E7%B7%8F%E5%90%88%E7%A0%94%E7%A9%B6%E6%A3%9F" target="_blank" rel="noopener" title="Google マップで開く"><iframe class="loc-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      src="https://maps.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E5%A4%A7%E5%AD%A6%20%E6%9F%8F%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%91%E3%82%B9%20%E7%AC%AC2%E7%B7%8F%E5%90%88%E7%A0%94%E7%A9%B6%E6%A3%9F&z=16&output=embed"></iframe></a>
     <div class="loc-name">東京大学 柏キャンパス</div>
     <div class="loc-addr">〒277-8568 千葉県柏市柏の葉5-1-5<br>第２総合研究棟 117号室</div>
   </div>
