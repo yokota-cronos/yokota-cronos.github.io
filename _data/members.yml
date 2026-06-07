@@ -1,0 +1,39 @@
+# プロジェクトメンバー。後で写真を images/members/<photo> に差し替えてください。
+# 各リンク（website / x / researchmap）は URL を入れると、その分だけアイコンが表示されます。
+# 空欄（""）にするとそのアイコンは非表示になります。
+
+- name_ja: "横田 知之"
+  name_en: "Tomoyuki Yokota"
+  role: "研究開発代表者 (PI)"
+  affiliation: "東京大学 工学系研究科・総合研究機構（准教授）"
+  photo: "yokota.jpg"
+  website: ""
+  x: ""
+  researchmap: ""
+
+- name_ja: "高橋 亮"
+  name_en: "Ryo Takahashi"
+  role: "主たる共同研究者 (Co-PI)"
+  affiliation: "東京大学"
+  photo: "takahashi.jpg"
+  website: ""
+  x: ""
+  researchmap: ""
+
+- name_ja: "野田 聡人"
+  name_en: "Akihito Noda"
+  role: "主たる共同研究者 (Co-PI)"
+  affiliation: "高知工科大学"
+  photo: "noda.jpg"
+  website: ""
+  x: ""
+  researchmap: ""
+
+- name_ja: "石田 繁巳"
+  name_en: "Shigemi Ishida"
+  role: "主たる共同研究者 (Co-PI)"
+  affiliation: "公立はこだて未来大学"
+  photo: "ishida.jpg"
+  website: ""
+  x: ""
+  researchmap: ""

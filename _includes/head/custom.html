@@ -1,0 +1,97 @@
+{% include base_path %}
+
+<!-- start custom head snippets -->
+
+<!-- Support for Academicons -->
+<link rel="stylesheet" href="{{ base_path }}/assets/css/academicons.css"/>
+
+<!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}/images/apple-touch-icon-180x180.png"/>
+<link rel="icon" type="image/svg+xml" href="{{ base_path }}/images/favicon.svg"/>
+<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-32x32.png" sizes="32x32"/>
+<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-192x192.png" sizes="192x192"/>
+<link rel="manifest" href="{{ base_path }}/images/manifest.json"/>
+<link rel="icon" href="/images/favicon.ico"/>
+<meta name="theme-color" content="#ffffff"/>
+
+<!-- ===== CRONOS project custom styles ===== -->
+<style>
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 2.5em 1em 1.5em;
+    margin-bottom: 1.5em;
+    background: linear-gradient(135deg, #0b3d91 0%, #1565c0 60%, #00897b 100%);
+    color: #fff;
+    border-radius: 10px;
+  }
+  .hero-program { font-size: 0.95em; letter-spacing: 0.05em; opacity: 0.9; margin: 0 0 0.4em; }
+  .hero-title { color: #fff; font-size: 1.9em; line-height: 1.35; margin: 0.1em 0; border: none; }
+  .hero-subtitle { font-size: 1.05em; opacity: 0.92; margin: 0.3em 0 0; }
+
+  .grand-challenge {
+    background: #f3f7fb;
+    border-left: 5px solid #1565c0;
+    padding: 1em 1.2em;
+    border-radius: 4px;
+  }
+  .grand-challenge .en { display: block; margin-top: 0.7em; font-size: 0.9em; color: #555; }
+
+  /* Member grid */
+  .member-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    justify-content: center;
+    margin: 1.5em 0 2em;
+  }
+  .member-card { flex: 0 1 200px; text-align: center; }
+  .member-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #e6edf3;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    margin-bottom: 0.6em;
+  }
+  .member-name { font-weight: 700; font-size: 1.05em; }
+  .member-name-en { font-size: 0.85em; color: #777; }
+  .member-role { font-size: 0.85em; color: #1565c0; margin-top: 0.3em; }
+  .member-aff { font-size: 0.8em; color: #555; margin-top: 0.2em; line-height: 1.4; }
+  .member-links { margin-top: 0.6em; }
+  .member-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    margin: 0 3px;
+    border-radius: 50%;
+    background: #1565c0;
+    color: #fff !important;
+    text-decoration: none;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .member-links a:hover { background: #0b3d91; transform: translateY(-2px); }
+  .member-links i { font-size: 0.95em; }
+
+  /* Publications / Awards list */
+  .data-note { font-size: 0.82em; color: #888; }
+  .pub-list { list-style: none; padding-left: 0; }
+  .pub-list li {
+    display: flex;
+    gap: 0.8em;
+    padding: 0.6em 0;
+    border-bottom: 1px solid #eee;
+    align-items: baseline;
+  }
+  .pub-year { flex: 0 0 3.2em; font-weight: 700; color: #1565c0; }
+  .pub-body { flex: 1; }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); border: 0;
+  }
+</style>
+<!-- end custom head snippets -->
