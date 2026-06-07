@@ -105,3 +105,8 @@ redirect_from:
     <div class="loc-addr">〒041-8655 北海道函館市亀田中野町116-2<br>石田 繁巳</div>
   </div>
 </div>
+
+<div class="acknowledgement">
+  <img class="ack-logo" src="{{ base_path }}/images/cronos_logo.jpg" alt="JST CRONOS">
+  <p class="ack-text">本プロジェクトは、JST CRONOS 2025年度採択課題「生体データ通信インフラの無線フルボディ化」（JST PRESTO JPMJPR2515）の支援を受けたものです。</p>
+</div>
