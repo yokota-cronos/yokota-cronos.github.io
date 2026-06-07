@@ -1,6 +1,7 @@
 ---
 permalink: /
 title: "生体データ通信インフラの無線フルボディ化"
+seo_title: "生体データ通信インフラの無線フルボディ化"
 excerpt: "Full-body Wireless Data and Power Networking"
 author_profile: false
 redirect_from:
