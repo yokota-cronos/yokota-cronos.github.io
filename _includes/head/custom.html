@@ -66,8 +66,6 @@
     overflow: hidden;
     margin: 0.3em calc(50% - 50vw) 2em;
     background: #0b3d91;
-    /* 立体感（浮き上がるような影） */
-    box-shadow: 0 14px 32px rgba(0,0,0,0.24), 0 4px 10px rgba(0,0,0,0.14);
   }
   /* スマートフォンでは画像の左半分だけを表示（左寄せでクロップ） */
   @media (max-width: 600px) {
@@ -83,7 +81,7 @@
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transition: opacity 2s ease;
+    /* クロスフェード等のエフェクトは一旦なし */
   }
   .hero-slide.is-active { opacity: 1; }
 
@@ -491,7 +489,8 @@
       stripHash();
     }
   });
-  /* トップのスライドショー: 画像を交互にクロスフェード */
+  /* トップ画像のスライドショー（クロスフェード）は一旦無効化し、先頭画像を静止表示 */
+  /*
   document.addEventListener('DOMContentLoaded', function () {
     var slides = document.querySelectorAll('.hero-slide');
     if (slides.length < 2) return;
@@ -502,6 +501,22 @@
       slides[i].classList.add('is-active');
     }, 5000);
   });
+  */
+
+  /* トップ画像をコンテナのグリッドオフセットに関わらず画面いっぱい（左右余白ゼロ）に。
+     .page が Susy グリッドで中央寄せでないため、実測して margin で補正する。 */
+  function fitHero() {
+    var h = document.querySelector('.hero-slideshow');
+    if (!h) return;
+    h.style.width = '100vw';
+    h.style.marginLeft = '0';
+    h.style.marginRight = '0';
+    var left = h.getBoundingClientRect().left;
+    h.style.marginLeft = (-left) + 'px';
+  }
+  window.addEventListener('load', fitHero);
+  window.addEventListener('resize', fitHero);
+  document.addEventListener('DOMContentLoaded', fitHero);
 })();
 </script>
 <!-- end custom head snippets -->
