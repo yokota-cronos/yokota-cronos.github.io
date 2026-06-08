@@ -47,6 +47,7 @@ redirect_from:
 </div>
 
 <div class="ext-links">
+  <a class="ext-gh ext-mail" href="mailto:takahashi@akg.t.u-tokyo.ac.jp" title="Contact"><i class="fas fa-envelope" aria-hidden="true"></i><span class="sr-only">Contact</span></a>
   <a class="ext-gh" href="https://github.com/yokota-cronos" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span></a>
   <a class="ext-cronos" href="https://www.jst.go.jp/kisoken/cronos/" target="_blank" rel="noopener" title="JST CRONOS"><img src="{{ base_path }}/images/cronos_logo.jpg" alt="JST CRONOS"></a>
 </div>
@@ -76,8 +77,6 @@ redirect_from:
 
 <h2 id="publication">Publication</h2>
 
-<p class="bib-export-wrap"><a class="bib-export" href="{{ base_path }}/publications.bib" download="cronos-publications.bib"><i class="ai ai-zotero" aria-hidden="true"></i> BibTeX をエクスポート（Zotero 等）</a></p>
-
 {% assign pubs = site.data.publications | sort: "year" | reverse %}
 {% assign pubgroups = pubs | group_by: "year" | sort: "name" | reverse %}
 {% for grp in pubgroups %}
@@ -87,7 +86,7 @@ redirect_from:
   {% if p.title and p.title != "" %}
   <div class="pub-entry">
     <div class="pub-main">
-      {% if p.authors and p.authors != "" %}{% assign fn = p.first_authors | default: "" | replace: ", ", "|" | replace: ",", "|" | strip %}{% assign first_norm = "|" | append: fn | append: "|" %}{% assign cn = p.corresponding_authors | default: "" | replace: ", ", "|" | replace: ",", "|" | strip %}{% assign corr_norm = "|" | append: cn | append: "|" %}{% capture authorsfmt %}{% assign alist = p.authors | split: "," %}{% for a in alist %}{% assign a = a | strip %}{% if a != "" %}{% assign parts = a | split: " " %}{% for part in parts %}{% if part != "" %}{% if forloop.last %}{{ part }}{% else %}{{ part | slice: 0 }}. {% endif %}{% endif %}{% endfor %}{% assign namekey = "|" | append: a | append: "|" %}{% if first_norm contains namekey %}*{% endif %}{% if corr_norm contains namekey %}†{% endif %}{% unless forloop.last %}, {% endunless %}{% endif %}{% endfor %}{% endcapture %}<div class="pub-authors">{{ authorsfmt | strip }}</div>{% endif %}
+      {% if p.authors and p.authors != "" %}{% assign fn = p.first_authors | default: "" | replace: ", ", "|" | replace: ",", "|" | strip %}{% assign first_norm = "|" | append: fn | append: "|" %}{% assign cn = p.corresponding_authors | default: "" | replace: ", ", "|" | replace: ",", "|" | strip %}{% assign corr_norm = "|" | append: cn | append: "|" %}{% capture authorsfmt %}{% assign alist = p.authors | split: "," %}{% for a in alist %}{% assign an = a | strip %}{% if an != "" %}{% assign parts = an | split: " " %}{% for part in parts %}{% if part != "" %}{% if forloop.last %}{{ part }}{% else %}{{ part | slice: 0 }}. {% endif %}{% endif %}{% endfor %}{% assign namekey = "|" | append: an | append: "|" %}{% if first_norm contains namekey %}*{% endif %}{% if corr_norm contains namekey %}†{% endif %}{% unless forloop.last %}, {% endunless %}{% endif %}{% endfor %}{% endcapture %}<div class="pub-authors">{{ authorsfmt | strip }}</div>{% endif %}
       <div class="pub-title">{{ p.title | markdownify | remove: "<p>" | remove: "</p>" | strip }}</div>
       {% assign venue = p.publisher | default: p.venue %}{% if venue and venue != "" %}<div class="pub-venue"><span class="pub-venue-name">{{ venue }}</span>{% if p.volume and p.volume != "" %}, {{ p.volume }}{% if p.number and p.number != "" %}({{ p.number }}){% endif %}{% elsif p.number and p.number != "" %}, Article No. {{ p.number }}{% endif %}{% if p.pages and p.pages != "" %}, pp.{{ p.pages }}{% endif %}{% if p.year and p.year != "" %} ({{ p.year }}){% endif %}</div>{% endif %}
       <div class="pub-links">
@@ -98,7 +97,9 @@ redirect_from:
         {% assign yt = p.youtube | default: p.video %}{% if yt and yt != "" %}<a href="{{ yt }}" target="_blank" rel="noopener">YouTube</a>{% endif %}
         {% if p.press and p.press != "" %}<a href="{{ p.press }}" target="_blank" rel="noopener">Press</a>{% endif %}
         {% if p.media and p.media != "" %}{% assign mediaurls = p.media | newline_to_br | replace: "<br />", " " | replace: "<br>", " " | replace: ",", " " | replace: ";", " " | replace: "|", " " | split: " " %}{% for murl in mediaurls %}{% assign m = murl | strip %}{% if m != "" and m contains "http" %}{% assign mhost = m | split: "//" | last | split: "/" | first | replace: "www.","" %}{% assign mname = mhost | split: "." | first | capitalize %}<a href="{{ m }}" target="_blank" rel="noopener">Media ({{ mname }})</a>{% endif %}{% endfor %}{% endif %}
+        {% assign fa2 = p.authors | split: "," | first | strip | split: " " | last %}{% assign tw2 = p.title | replace: "*","" | strip | split: " " | first | replace: ":","" | replace: ",","" %}{% assign citekey = fa2 | append: p.year | append: tw2 %}{% capture bibtext %}{% include bibtex.html p=p key=citekey %}{% endcapture %}<a href="#" class="pub-bib" role="button">BibTeX</a>
       </div>
+      <pre class="bib-pre" hidden>{{ bibtext | strip | escape }}</pre>
     </div>
     {% if p.image and p.image != "" %}
     <div class="pub-thumb">{% if p.image contains "http" %}<img loading="lazy" src="{{ p.image }}" alt="">{% else %}<img loading="lazy" src="{{ base_path }}/images/publications/{{ p.image }}" alt="">{% endif %}</div>
@@ -108,7 +109,6 @@ redirect_from:
 {% endfor %}
 </div>
 {% endfor %}
-<p class="pub-foot">* first author　† corresponding author</p>
 
 <h2 id="award">Award</h2>
 

@@ -77,6 +77,15 @@
     outline: none !important;
     box-shadow: none !important;
   }
+  /* 写真・News などのクリック後に出るアウトラインも消す（影は残す） */
+  .concept-fig:focus, .concept-fig:focus-visible,
+  .news-card:focus, .news-card:focus-visible,
+  .news-more a:focus, .news-more a:focus-visible,
+  .loc-map-link:focus, .loc-map-link:focus-visible,
+  .ext-links a:focus, .ext-links a:focus-visible,
+  .pub-thumb a:focus, .pub-thumb a:focus-visible {
+    outline: none !important;
+  }
   /* Hero slideshow (top banner, crossfades between images) */
   .hero-slideshow {
     position: relative;
@@ -172,6 +181,7 @@
     text-decoration: none !important; transition: transform 0.15s ease;
   }
   .ext-gh:hover { transform: translateY(-2px); }
+  .ext-mail { background: #c0392b; }            /* Contact (email) */
   .ext-cronos { display: inline-flex; }
   .ext-cronos img {
     height: 40px; width: auto; display: block; border-radius: 6px;
@@ -327,8 +337,16 @@
   }
   .bib-export:hover { background: #4385f5; color: #fff !important; }
 
-  /* 著者脚注（* first author / † corresponding author） */
-  .pub-foot { font-size: 0.8em; color: #888; margin: 0.8em 0 0; }
+  /* BibTeX 表示ボックス */
+  .pub-bib { cursor: pointer; }
+  .bib-pre {
+    margin: 0.6em 0 0; padding: 0.8em 1em;
+    background: #f6f8fa; border: 1px solid #e1e6ea; border-radius: 8px;
+    font-size: 0.78em; line-height: 1.5; color: #2f3a45;
+    white-space: pre-wrap; word-break: break-word; overflow-x: auto;
+    font-family: Monaco, Consolas, "Lucida Console", monospace;
+    user-select: all;
+  }
 
   /* Publications: 著者 → 太字タイトル → 斜体 venue → リンク行 ＋ 右側サムネイル */
   .pub-list2 { margin: 1.5em 0; }
@@ -534,6 +552,18 @@
     }
     stripHash();
   }, true);
+  /* 各論文の「BibTeX」クリックで BibTeX を表示/非表示（ダウンロードはしない） */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('.pub-bib');
+    if (!b) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var entry = b.closest('.pub-entry');
+    var pre = entry && entry.querySelector('pre.bib-pre');
+    if (!pre) return;
+    pre.hidden = !pre.hidden;
+    b.classList.toggle('is-open', !pre.hidden);
+  });
   /* 何かが # を付けても即座に消す（保険） */
   window.addEventListener('hashchange', stripHash);
   window.addEventListener('load', function () {
