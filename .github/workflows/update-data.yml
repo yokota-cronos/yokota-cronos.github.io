@@ -12,15 +12,8 @@
 #        awards:       year,authors,title,url （recipient,organization 列も後方互換で利用可）
 #      ※ ヘッダーの前後空白や CR は取り込み時に自動で除去します。
 #      ※ AWARDS_CSV_URL 未設定時は既定で当リポジトリ指定のスプレッドシート「Award」シートを使用。
-#   3) （任意）論文タイトルのネイティブ斜体/太字をそのまま反映したい場合:
-#        - Google Cloud で API キーを作成し「Google Sheets API」を有効化
-#        - Settings > Secrets and variables > Actions > Secrets に
-#            GOOGLE_SHEETS_API_KEY = 作成したAPIキー
-#          を登録（シートは「リンクを知る全員が閲覧可」にしておく）
-#        - 必要なら Variables に PUBLICATIONS_SHEET_ID / PUBLICATIONS_SHEET_NAME も登録
-#          （未設定時は既定のスプレッドシートID・シート名「Publication」を使用）
-#        ※ CSV はセル内の部分的な書式を保持しないため、Sheets API 経由で
-#          textFormatRuns を取得して <i>/<b> に変換します（キー未設定なら何もしません）。
+#      ※ 論文タイトルの斜体/太字は、セル内で *斜体* / **太字** のように Markdown 記法で
+#        囲むと表示時に反映されます（CSV はネイティブ書式を保持しないための運用）。
 #
 #      publications の各列（リンク列は空欄ならそのリンクは非表示）:
 #        publisher  会議/論文誌名（斜体で表示。旧 venue 列も後方互換）
@@ -80,18 +73,6 @@ jobs:
         run: |
           if [ -f _data/publications.csv ]; then
             python3 scripts/enrich_publications.py _data/publications.csv || echo "enrichment skipped"
-          fi
-
-      - name: Apply native italic/bold titles from the sheet (Sheets API)
-        env:
-          GOOGLE_SHEETS_API_KEY: ${{ secrets.GOOGLE_SHEETS_API_KEY }}
-          PUBLICATIONS_SHEET_ID: ${{ vars.PUBLICATIONS_SHEET_ID || '1bHJfQ9qKrqRu0MSns7lOH6VJq6RyZdECyhNP_HsG1Pc' }}
-          PUBLICATIONS_SHEET_NAME: ${{ vars.PUBLICATIONS_SHEET_NAME || 'Publication' }}
-        run: |
-          if [ -n "$GOOGLE_SHEETS_API_KEY" ] && [ -f _data/publications.csv ]; then
-            python3 scripts/enrich_titles_richtext.py _data/publications.csv "$PUBLICATIONS_SHEET_ID" "$PUBLICATIONS_SHEET_NAME" || echo "rich-text titles skipped"
-          else
-            echo "GOOGLE_SHEETS_API_KEY not set; skipping rich-text titles."
           fi
 
       - name: Commit and push if changed
