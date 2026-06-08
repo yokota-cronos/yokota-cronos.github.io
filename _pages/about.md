@@ -78,6 +78,7 @@ redirect_from:
 {% assign pubs = site.data.publications | sort: "year" | reverse %}
 <div class="pub-list2">
 {% for p in pubs %}
+  {% if p.title and p.title != "" %}
   <div class="pub-entry">
     <div class="pub-main">
       {% if p.authors and p.authors != "" %}<div class="pub-authors">{{ p.authors }}</div>{% endif %}
@@ -97,6 +98,7 @@ redirect_from:
     <div class="pub-thumb">{% if p.image contains "http" %}<img loading="lazy" src="{{ p.image }}" alt="">{% else %}<img loading="lazy" src="{{ base_path }}/images/publications/{{ p.image }}" alt="">{% endif %}</div>
     {% endif %}
   </div>
+  {% endif %}
 {% endfor %}
 </div>
 
