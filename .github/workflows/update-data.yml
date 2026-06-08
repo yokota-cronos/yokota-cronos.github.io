@@ -67,6 +67,12 @@ jobs:
             echo "AWARDS_CSV_URL not set; skipping."
           fi
 
+      - name: Enrich publications from DOI (fill empty fields via Crossref)
+        run: |
+          if [ -f _data/publications.csv ]; then
+            python3 scripts/enrich_publications.py _data/publications.csv || echo "enrichment skipped"
+          fi
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
