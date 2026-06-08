@@ -203,7 +203,7 @@
   }
   .member-card { text-align: center; position: relative; }
   .member-card.has-bio .member-photo { cursor: help; }
-  .bio-hint { font-size: 0.8em; color: #4385f5; }
+  .bio-hint { font-size: 0.8em; color: #4385f5; cursor: pointer; }
 
   /* Career tooltip shown on hover/focus */
   .member-bio {
@@ -239,12 +239,15 @@
     border: 7px solid transparent;
     border-top-color: #222b36;
   }
-  /* 経歴は写真にマウスを乗せたときのみ表示（写真とは重ならない位置に出す） */
-  .member-card.has-bio .member-photo:hover ~ .member-bio {
+  /* 経歴は写真にホバー、または ⓘ クリックで開いた時に表示 */
+  .member-card.has-bio .member-photo:hover ~ .member-bio,
+  .member-card.has-bio.bio-open .member-bio {
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, 0);
   }
+  /* クリックで開いた経歴はスクロール等の操作を可能に */
+  .member-card.has-bio.bio-open .member-bio { pointer-events: auto; }
   .member-photo {
     width: 100%;
     max-width: 195px;
@@ -502,6 +505,26 @@
     }
     stripHash();
   }, true);
+  /* メンバーの ⓘ クリックで経歴(bio)の表示/非表示を切り替え。外側クリックで閉じる。 */
+  document.addEventListener('click', function (e) {
+    var hint = e.target.closest && e.target.closest('.bio-hint');
+    if (hint) {
+      var card = hint.closest('.member-card');
+      if (card) {
+        var isOpen = card.classList.contains('bio-open');
+        var opened = document.querySelectorAll('.member-card.bio-open');
+        for (var i = 0; i < opened.length; i++) opened[i].classList.remove('bio-open');
+        if (!isOpen) card.classList.add('bio-open');
+        e.stopPropagation();
+      }
+      return;
+    }
+    /* bio 以外をクリックしたら開いている経歴を閉じる */
+    if (!(e.target.closest && e.target.closest('.member-bio'))) {
+      var open = document.querySelectorAll('.member-card.bio-open');
+      for (var j = 0; j < open.length; j++) open[j].classList.remove('bio-open');
+    }
+  });
   /* 何かが # を付けても即座に消す（保険） */
   window.addEventListener('hashchange', stripHash);
   window.addEventListener('load', function () {
