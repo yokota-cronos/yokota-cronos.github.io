@@ -77,8 +77,11 @@ redirect_from:
 <h2 id="publication">Publication</h2>
 
 {% assign pubs = site.data.publications | sort: "year" | reverse %}
+{% assign pubgroups = pubs | group_by: "year" | sort: "name" | reverse %}
+{% for grp in pubgroups %}
+<h3 class="year-head">{{ grp.name }}</h3>
 <div class="pub-list2">
-{% for p in pubs %}
+{% for p in grp.items %}
   {% if p.title and p.title != "" %}
   <div class="pub-entry">
     <div class="pub-main">
@@ -102,18 +105,22 @@ redirect_from:
   {% endif %}
 {% endfor %}
 </div>
+{% endfor %}
 
 <h2 id="award">Award</h2>
 
 {% assign awards = site.data.awards | sort: "year" | reverse %}
+{% assign awgroups = awards | group_by: "year" | sort: "name" | reverse %}
+{% for grp in awgroups %}
+<h3 class="year-head">{{ grp.name }}</h3>
 <ul class="pub-list">
-{% for a in awards %}
+{% for a in grp.items %}
   <li>
-    <span class="pub-year">{{ a.year }}</span>
     {% assign who = a.recipient | default: a.authors %}<span class="pub-body">{% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener"><strong>{{ a.title }}</strong></a>{% else %}<strong>{{ a.title }}</strong>{% endif %}{% if who and who != "" %} — {{ who }}{% endif %}{% if a.organization and a.organization != "" %}（{{ a.organization }}）{% endif %}</span>
   </li>
 {% endfor %}
 </ul>
+{% endfor %}
 
 <h2 id="access">Access</h2>
 
