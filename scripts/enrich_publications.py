@@ -45,9 +45,9 @@ def fetch(doi):
 
 
 def fetch_bibtex(doi):
-    """Official BibTeX for the DOI via Crossref content negotiation."""
-    url = ("https://api.crossref.org/works/%s/transform/application/x-bibtex"
-           % urllib.parse.quote(doi))
+    """Official BibTeX for the DOI via doi.org content negotiation
+    (works for both Crossref and DataCite/arXiv DOIs)."""
+    url = "https://doi.org/" + urllib.parse.quote(doi)
     req = urllib.request.Request(url, headers={
         "User-Agent": "cronos-web/1.0 (mailto:%s)" % MAILTO,
         "Accept": "application/x-bibtex",
@@ -58,6 +58,41 @@ def fetch_bibtex(doi):
     except Exception as e:  # noqa: BLE001
         print("  bibtex fetch failed for %s: %s" % (doi, e), file=sys.stderr)
         return ""
+
+
+ARXIV_RE = re.compile(r'(\d{4}\.\d{4,5})')
+
+
+def extract_arxiv(s):
+    if not s:
+        return None
+    m = ARXIV_RE.search(s)
+    return m.group(1) if m else None
+
+
+def fetch_arxiv(arxiv_id):
+    """Metadata (title/authors/year) for an arXiv paper via the arXiv API."""
+    import xml.etree.ElementTree as ET
+    url = "http://export.arxiv.org/api/query?id_list=" + urllib.parse.quote(arxiv_id)
+    req = urllib.request.Request(
+        url, headers={"User-Agent": "cronos-web/1.0 (mailto:%s)" % MAILTO})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            data = r.read().decode("utf-8", "replace")
+        ns = {"a": "http://www.w3.org/2005/Atom"}
+        entry = ET.fromstring(data).find("a:entry", ns)
+        if entry is None:
+            return None
+        te = entry.find("a:title", ns)
+        title = " ".join(te.text.split()) if te is not None and te.text else ""
+        authors = [ae.find("a:name", ns).text for ae in entry.findall("a:author", ns)
+                   if ae.find("a:name", ns) is not None]
+        pe = entry.find("a:published", ns)
+        year = pe.text[:4] if pe is not None and pe.text else ""
+        return {"title": title, "authors": ", ".join(authors), "year": year}
+    except Exception as e:  # noqa: BLE001
+        print("  arxiv fetch failed for %s: %s" % (arxiv_id, e), file=sys.stderr)
+        return None
 
 
 def first(x):
@@ -127,48 +162,69 @@ def main():
             row.setdefault(col, "")
 
     for row in rows:
-        doi = extract_doi(row.get("doi", ""))
-        if not doi:
+        real_doi = extract_doi(row.get("doi", ""))
+        arxiv_id = extract_arxiv(row.get("arxiv", ""))
+        if not real_doi and not arxiv_id:
             continue
-        msg = fetch(doi)
-        time.sleep(1)  # be polite to the Crossref API
-        if not msg:
-            continue
-        # Fill empty core fields only — never overwrite values set in the sheet.
-        if is_empty(row, "title"):
-            t = first(msg.get("title"))
-            if t:
-                row["title"] = t
+
+        if real_doi:
+            # Metadata from Crossref.
+            msg = fetch(real_doi)
+            time.sleep(1)  # be polite to the API
+            if msg:
+                if is_empty(row, "title"):
+                    t = first(msg.get("title"))
+                    if t:
+                        row["title"] = t
+                        changed = True
+                if is_empty(row, "authors"):
+                    a = authors_str(msg)
+                    if a:
+                        row["authors"] = a
+                        changed = True
+                if is_empty(row, "year"):
+                    y = year_str(msg)
+                    if y:
+                        row["year"] = y
+                        changed = True
+                if is_empty(row, "publisher"):
+                    c = first(msg.get("container-title")) or msg.get("publisher", "")
+                    if c:
+                        row["publisher"] = c
+                        changed = True
+                # number = issue, falling back to the article number.
+                detail = {
+                    "volume": msg.get("volume"),
+                    "number": msg.get("issue") or msg.get("article-number"),
+                    "pages": msg.get("page"),
+                }
+                for col, v in detail.items():
+                    val = str(v).strip() if v else ""
+                    if (row.get(col) or "") != val:
+                        row[col] = val
+                        changed = True
+            bibtex_doi = real_doi
+        else:
+            # arXiv-only: metadata from the arXiv API, BibTeX via its DataCite DOI.
+            ax = fetch_arxiv(arxiv_id)
+            time.sleep(1)
+            if ax:
+                if is_empty(row, "title") and ax.get("title"):
+                    row["title"] = ax["title"]
+                    changed = True
+                if is_empty(row, "authors") and ax.get("authors"):
+                    row["authors"] = ax["authors"]
+                    changed = True
+                if is_empty(row, "year") and ax.get("year"):
+                    row["year"] = ax["year"]
+                    changed = True
+            if is_empty(row, "publisher"):
+                row["publisher"] = "arXiv preprint arXiv:" + arxiv_id
                 changed = True
-        if is_empty(row, "authors"):
-            a = authors_str(msg)
-            if a:
-                row["authors"] = a
-                changed = True
-        if is_empty(row, "year"):
-            y = year_str(msg)
-            if y:
-                row["year"] = y
-                changed = True
-        if is_empty(row, "publisher"):
-            c = first(msg.get("container-title")) or msg.get("publisher", "")
-            if c:
-                row["publisher"] = c
-                changed = True
-        # volume / number / pages always come from Crossref.
-        # number = issue, falling back to the article number.
-        detail = {
-            "volume": msg.get("volume"),
-            "number": msg.get("issue") or msg.get("article-number"),
-            "pages": msg.get("page"),
-        }
-        for col, v in detail.items():
-            val = str(v).strip() if v else ""
-            if (row.get(col) or "") != val:
-                row[col] = val
-                changed = True
-        # Official BibTeX straight from the DOI (Crossref), never self-made.
-        bib = fetch_bibtex(doi)
+            bibtex_doi = "10.48550/arXiv." + arxiv_id
+
+        # Official BibTeX straight from the DOI (Crossref/DataCite), never self-made.
+        bib = fetch_bibtex(bibtex_doi)
         time.sleep(1)
         if bib:
             bib = re.sub(r',\s+(\w+=)', r',\n  \1', bib)
@@ -176,7 +232,7 @@ def main():
             if (row.get("bibtex") or "") != bib:
                 row["bibtex"] = bib
                 changed = True
-        print("  enriched %s -> %s" % (doi, (row.get("title") or "")[:60]))
+        print("  enriched %s -> %s" % (bibtex_doi, (row.get("title") or "")[:60]))
 
     if changed:
         with open(CSV_PATH, "w", newline="", encoding="utf-8") as f:

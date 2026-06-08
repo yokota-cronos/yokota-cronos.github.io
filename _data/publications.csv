@@ -36,3 +36,13 @@
   month=Oct,
   pages={529–533}
 }"
+"2025","Ryo Takahashi, Changyo Han, Wakako Yukita, John S. Ho, Takuya Sasatani, Akihito Noda, Tomoyuki Yokota, Takao Someya, Yoshihiro Kawahara","Full-body NFC: body-scale near-field sensor networks with machine-knittable meandered e-textiles","arXiv preprint arXiv:2503.13240","","","","","https://arxiv.org/abs/2503.13240","","","Ryo Takahashi","Ryo Takahashi","","","","@misc{https://doi.org/10.48550/arxiv.2503.13240,
+  doi = {10.48550/ARXIV.2503.13240},
+  url = {https://arxiv.org/abs/2503.13240},
+  author = {Takahashi, Ryo and Han, Changyo and Yukita, Wakako and Ho, John S. and Sasatani, Takuya and Noda, Akihito and Yokota, Tomoyuki and Someya, Takao and Kawahara, Yoshihiro},
+  keywords = {Human-Computer Interaction (cs.HC), FOS: Computer and information sciences, FOS: Computer and information sciences},
+  title = {Full-body NFC: body-scale near-field sensor networks with machine-knittable meandered e-textiles},
+  publisher = {arXiv},
+  year = {2025},
+  copyright = {arXiv.org perpetual, non-exclusive license}
+}"
