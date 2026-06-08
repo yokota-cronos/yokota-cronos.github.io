@@ -87,7 +87,7 @@ redirect_from:
     <div class="pub-main">
       {% if p.authors and p.authors != "" %}<div class="pub-authors">{{ p.authors }}</div>{% endif %}
       <div class="pub-title">{{ p.title | markdownify | remove: "<p>" | remove: "</p>" | strip }}</div>
-      {% assign venue = p.publisher | default: p.venue %}{% if venue and venue != "" %}<div class="pub-venue"><span class="pub-venue-name">{{ venue }}</span>{% if p.volume and p.volume != "" %}, {{ p.volume }}{% if p.number and p.number != "" %}({{ p.number }}){% endif %}{% endif %}{% if p.pages and p.pages != "" %}, pp.{{ p.pages }}{% endif %}{% if p.year and p.year != "" %} ({{ p.year }}){% endif %}</div>{% endif %}
+      {% assign venue = p.publisher | default: p.venue %}{% if venue and venue != "" %}<div class="pub-venue"><span class="pub-venue-name">{{ venue }}</span>{% if p.volume and p.volume != "" %}, {{ p.volume }}{% if p.number and p.number != "" %}({{ p.number }}){% endif %}{% elsif p.number and p.number != "" %}, Article No. {{ p.number }}{% endif %}{% if p.pages and p.pages != "" %}, pp.{{ p.pages }}{% endif %}{% if p.year and p.year != "" %} ({{ p.year }}){% endif %}</div>{% endif %}
       <div class="pub-links">
         {% assign pdf = p.pdf | default: p.paper %}{% if pdf and pdf != "" %}{% if pdf contains "http" %}<a href="{{ pdf }}"{% else %}<a href="{{ base_path }}/paper/{{ pdf }}"{% endif %} target="_blank" rel="noopener">PDF</a>{% endif %}
         {% assign doi = p.doi | default: p.url %}{% if doi and doi != "" %}<a href="{{ doi }}" target="_blank" rel="noopener">DOI</a>{% endif %}

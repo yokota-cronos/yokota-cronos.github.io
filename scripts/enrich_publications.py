@@ -123,9 +123,14 @@ def main():
             if c:
                 row["publisher"] = c
                 changed = True
-        # volume / number(issue) / pages always come from Crossref.
-        for col, key in (("volume", "volume"), ("number", "issue"), ("pages", "page")):
-            v = msg.get(key)
+        # volume / number / pages always come from Crossref.
+        # number = issue, falling back to the article number.
+        detail = {
+            "volume": msg.get("volume"),
+            "number": msg.get("issue") or msg.get("article-number"),
+            "pages": msg.get("page"),
+        }
+        for col, v in detail.items():
             val = str(v).strip() if v else ""
             if (row.get(col) or "") != val:
                 row[col] = val
