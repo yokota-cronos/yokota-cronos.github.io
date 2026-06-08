@@ -82,19 +82,27 @@ def main():
     if not fields:
         print("empty CSV; nothing to do")
         return
+    fields = list(fields)
 
     changed = False
+
+    # Bibliographic-detail columns are derived from Crossref (no sheet column).
+    for col in ("volume", "number", "pages"):
+        if col not in fields:
+            fields.append(col)
+            changed = True
+        for row in rows:
+            row.setdefault(col, "")
+
     for row in rows:
         doi = extract_doi(row.get("doi", ""))
         if not doi:
-            continue
-        # Nothing to fill if the core fields are already present.
-        if not (is_empty(row, "title") or is_empty(row, "authors") or is_empty(row, "year")):
             continue
         msg = fetch(doi)
         time.sleep(1)  # be polite to the Crossref API
         if not msg:
             continue
+        # Fill empty core fields only — never overwrite values set in the sheet.
         if is_empty(row, "title"):
             t = first(msg.get("title"))
             if t:
@@ -110,10 +118,17 @@ def main():
             if y:
                 row["year"] = y
                 changed = True
-        if "publisher" in (fields or []) and is_empty(row, "publisher"):
+        if is_empty(row, "publisher"):
             c = first(msg.get("container-title")) or msg.get("publisher", "")
             if c:
                 row["publisher"] = c
+                changed = True
+        # volume / number(issue) / pages always come from Crossref.
+        for col, key in (("volume", "volume"), ("number", "issue"), ("pages", "page")):
+            v = msg.get(key)
+            val = str(v).strip() if v else ""
+            if (row.get(col) or "") != val:
+                row[col] = val
                 changed = True
         print("  enriched %s -> %s" % (doi, (row.get("title") or "")[:60]))
 
