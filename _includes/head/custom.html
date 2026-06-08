@@ -308,6 +308,9 @@
   }
   .pub-year { flex: 0 0 3.2em; font-weight: 700; color: #4385f5; }
   .pub-body { flex: 1; }
+  /* Award タイトルはリンクの有無に関わらず黒・太字・下線なし */
+  .pub-list .pub-body a { color: inherit !important; text-decoration: none !important; }
+  .pub-list .pub-body a:hover { color: inherit !important; text-decoration: none !important; }
 
   /* Publications: 著者 → 太字タイトル → 斜体 venue → リンク行 ＋ 右側サムネイル */
   .pub-list2 { margin: 1.5em 0; }
