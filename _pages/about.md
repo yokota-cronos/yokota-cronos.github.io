@@ -44,12 +44,15 @@ redirect_from:
 <div class="concept-figs">
   <a class="concept-fig" href="https://arxiv.org/abs/2503.13240" target="_blank" rel="noopener"><img loading="lazy" src="{{ base_path }}/images/concept/concept1.jpg" alt="皮膚近傍に電磁界を閉じ込める「全身無線通信・給電服」"></a>
   <a class="concept-fig" href="https://www.nature.com/articles/s41928-019-0354-7" target="_blank" rel="noopener"><img loading="lazy" src="{{ base_path }}/images/concept/concept2.jpg" alt="医療インフラを病院から日常へ"></a>
+  <div class="concept-fig"><img loading="lazy" src="{{ base_path }}/images/concept/concept3.jpg" alt="挑戦：3次元から2次元の無線通信・給電技術へ"></div>
+  <div class="concept-fig"><img loading="lazy" src="{{ base_path }}/images/concept/concept4.jpg" alt="標準化戦略：次世代のNFCを目指して"></div>
 </div>
 
 <div class="ext-links">
   <a class="ext-gh ext-mail" href="mailto:takahashi@akg.t.u-tokyo.ac.jp" title="Contact"><i class="fas fa-envelope" aria-hidden="true"></i><span class="sr-only">Contact</span></a>
   <a class="ext-gh" href="https://github.com/yokota-cronos" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github" aria-hidden="true"></i><span class="sr-only">GitHub</span></a>
   <a class="ext-cronos" href="https://www.jst.go.jp/kisoken/cronos/" target="_blank" rel="noopener" title="JST CRONOS"><img src="{{ base_path }}/images/cronos_logo.jpg" alt="JST CRONOS"></a>
+  <a class="ext-gh ext-picoring" href="https://picoring.github.io/" target="_blank" rel="noopener" title="PiCoRing"><i class="fas fa-ring" aria-hidden="true"></i><span class="sr-only">PiCoRing</span></a>
 </div>
 
 <h2 id="team">Team</h2>
