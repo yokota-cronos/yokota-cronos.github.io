@@ -8,6 +8,13 @@
 #
 # ホームには最新5件、全件は /news/ ページに表示されます。
 
+- key: "2026-10-12-1"
+  date: "2026-10-12"
+  title: "ACM UbiComp 2026 にて Workshop を開催（横田が Keynote）"
+  text: "ACM UbiComp 2026 にて Workshop を開催。横田が Keynote 講演"
+  image: "ubicomp_workshop.jpg"
+  url: "https://softwearables.github.io/"
+
 - key: "2026-06-04-1"
   date: "2026-06-04"
   title: "IEEE RA-L 2025 Best Paper Award を受賞"
