@@ -6,7 +6,8 @@
         <button><span class="navicon"></span></button>
         <ul class="visible-links">
           <li class="masthead__menu-item masthead__menu-item--lg persist {% if page.url == '/' or page.url == '/index.html' %}selected{% endif %}">
-            <a href="{{ base_path }}/">{{ site.title }}</a>
+            {% assign title_parts = site.title | split: "｜" %}
+            <a href="{{ base_path }}/" class="site-brand">{% if title_parts.size > 1 %}<span class="site-brand-main">{{ title_parts[0] | strip }}</span><span class="site-brand-sub">{{ title_parts[1] | strip }}</span>{% else %}{{ site.title }}{% endif %}</a>
           </li>
           {% for link in site.data.navigation.main %}
             {% if link.url contains 'http' %}

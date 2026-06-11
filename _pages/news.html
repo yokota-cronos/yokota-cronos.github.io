@@ -15,7 +15,6 @@ author_profile: false
     {% if n.image and n.image != "" %}<img class="news-thumb" loading="lazy" src="{{ base_path }}/images/news/{{ n.image }}" alt="">{% else %}<div class="news-thumb news-thumb--ph"></div>{% endif %}
     <div class="news-card-body">
       <div class="news-card-title">{{ n.title }}</div>
-      <div class="news-card-text">{{ n.text }}</div>
       <div class="news-card-date">{{ n.date }}</div>
     </div>
   {% if n.url and n.url != "" %}</a>{% else %}</div>{% endif %}

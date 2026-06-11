@@ -77,6 +77,22 @@
     outline: none !important;
     box-shadow: none !important;
   }
+  /* サイトブランド（左上）：写真のように大きく2行で表示 */
+  .site-brand {
+    display: inline-block;
+    line-height: 1.15;
+  }
+  .site-brand-main {
+    display: block;
+    font-size: 1.7em;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+  }
+  .site-brand-sub {
+    display: block;
+    font-size: 0.92em;
+    font-weight: 600;
+  }
   /* 写真・News などのクリック後に出るアウトラインも消す（影は残す） */
   .concept-fig:focus, .concept-fig:focus-visible,
   .news-card:focus, .news-card:focus-visible,
@@ -419,7 +435,7 @@
   a.news-card:hover { box-shadow: 0 6px 18px rgba(0,0,0,0.12); transform: translateY(-3px); }
   .news-thumb {
     width: 100%;
-    height: 260px;
+    height: 200px;
     object-fit: cover;
     display: block;
   }
@@ -452,12 +468,58 @@
     padding: 0.8em 0.9em 1em;
   }
   .news-card-title { font-weight: 700; font-size: 1.0em; line-height: 1.4; margin-bottom: 0.35em; }
-  .news-card-text { font-size: 0.85em; color: #5b6b7b; line-height: 1.6; }
   .news-card-date { font-size: 0.78em; font-weight: 700; color: #4385f5; margin-top: auto; padding-top: 0.7em; }
   .news-more { text-align: right; margin: 0.2em 0 0; font-size: 0.9em; }
-  /* スマートフォンでは News を 2 件だけ表示 */
-  @media (max-width: 600px) {
-    .news-grid .news-card:nth-child(n+3) { display: none; }
+
+  /* ===== ホームの News カルーセル（PC は端から端まで横スクロール） ===== */
+  .news-carousel-wrap { position: relative; box-sizing: border-box; margin: 1.5em 0 1em; }
+  .news-carousel {
+    display: flex;
+    gap: 1.4em;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;            /* Firefox: スクロールバー非表示 */
+    padding-bottom: 0.6em;
+  }
+  .news-carousel::-webkit-scrollbar { display: none; }   /* WebKit: スクロールバー非表示 */
+  .news-carousel .news-card {
+    flex: 0 0 270px;
+    width: 270px;
+    scroll-snap-align: start;
+  }
+  /* 左右の矢印（ホバー／フォーカス時に表示） */
+  .news-arrow {
+    position: absolute;
+    top: 100px;                       /* サムネイル（高さ200px）の中央 */
+    z-index: 5;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: none; border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    color: #333; font-size: 1.7em; line-height: 1; padding: 0 0 0.12em;
+    cursor: pointer; opacity: 0;
+    transition: opacity 0.2s ease, background 0.15s, box-shadow 0.15s;
+  }
+  .news-carousel-wrap:hover .news-arrow,
+  .news-carousel-wrap:focus-within .news-arrow { opacity: 1; }
+  .news-arrow:hover { background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.25); }
+  .news-arrow[hidden] { display: none; }
+  .news-arrow--left  { left: 14px; }
+  .news-arrow--right { right: 14px; }
+
+  /* モバイルではカルーセルを無効化し、縦並びグリッドで先頭3件のみ表示 */
+  @media (max-width: 768px) {
+    .news-carousel {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      overflow: visible;
+    }
+    .news-carousel .news-card { width: auto; flex: 0 1 auto; }
+    .news-carousel .news-card:nth-child(n+4) { display: none; }
+    .news-arrow { display: none; }
   }
 
   /* Locations */

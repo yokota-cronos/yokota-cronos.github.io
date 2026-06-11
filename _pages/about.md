@@ -16,23 +16,74 @@ redirect_from:
   <img class="hero-slide" loading="lazy" src="{{ base_path }}/images/hero/front2.jpg" alt="">
 </div>
 
-<h2 id="news">News</h2>
-
 {% assign news = site.data.news | sort: "key" | reverse %}
-<div class="news-grid">
-{% for n in news limit:4 %}
+<div class="news-carousel-wrap">
+  <button class="news-arrow news-arrow--left" type="button" aria-label="前のニュース" hidden>&#8249;</button>
+  <div class="news-carousel" id="newsCarousel">
+{% for n in news limit:12 %}
   {% if n.url and n.url != "" %}<a class="news-card" href="{{ n.url }}" target="_blank" rel="noopener">{% else %}<div class="news-card">{% endif %}
     {% if n.category and n.category != "" %}{% case n.category %}{% when "受賞" %}{% assign badgeCls = "award" %}{% when "告知" %}{% assign badgeCls = "info" %}{% when "発表" %}{% assign badgeCls = "talk" %}{% when "採択" %}{% assign badgeCls = "grant" %}{% else %}{% assign badgeCls = "info" %}{% endcase %}<span class="news-badge news-badge--{{ badgeCls }}">{{ n.category }}</span>{% endif %}
     {% if n.image and n.image != "" %}<img class="news-thumb" loading="lazy" src="{{ base_path }}/images/news/{{ n.image }}" alt="">{% else %}<div class="news-thumb news-thumb--ph"></div>{% endif %}
     <div class="news-card-body">
       <div class="news-card-title">{{ n.title }}</div>
-      <div class="news-card-text">{{ n.text }}</div>
       <div class="news-card-date">{{ n.date }}</div>
     </div>
   {% if n.url and n.url != "" %}</a>{% else %}</div>{% endif %}
 {% endfor %}
+  </div>
+  <button class="news-arrow news-arrow--right" type="button" aria-label="次のニュース" hidden>&#8250;</button>
 </div>
 {% if news.size > 4 %}<p class="news-more"><a href="{{ base_path }}/news/">View all news →</a></p>{% endif %}
+
+<script>
+(function () {
+  var wrap = document.querySelector('.news-carousel-wrap');
+  if (!wrap) return;
+  var track = wrap.querySelector('.news-carousel');
+  var left  = wrap.querySelector('.news-arrow--left');
+  var right = wrap.querySelector('.news-arrow--right');
+
+  function isPC() { return window.innerWidth >= 769; }
+
+  function layout() {
+    // いったんリセットして自然な位置を測る
+    wrap.style.width = '';
+    wrap.style.marginLeft = '';
+    wrap.style.paddingLeft = '';
+    wrap.style.paddingRight = '';
+    if (isPC()) {
+      var vw = document.documentElement.clientWidth;          // スクロールバー幅を除いた表示幅
+      var l  = Math.max(0, wrap.getBoundingClientRect().left);// コンテンツ左端＝自然な左端
+      wrap.style.width = vw + 'px';                           // 端から端まで
+      wrap.style.marginLeft = (-l) + 'px';                    // ビューポート左端へ寄せる
+      wrap.style.paddingLeft = l + 'px';                      // 先頭カードをコンテンツ左端に揃える
+      wrap.style.paddingRight = l + 'px';
+    }
+    update();
+  }
+
+  function step() {
+    var c = track.querySelector('.news-card');
+    var w = c ? c.getBoundingClientRect().width : 300;
+    return Math.max(w + 22, track.clientWidth * 0.8);
+  }
+
+  function update() {
+    if (!left || !right) return;
+    var max = track.scrollWidth - track.clientWidth - 1;
+    var on = isPC();
+    left.hidden  = !on || track.scrollLeft <= 0;
+    right.hidden = !on || track.scrollLeft >= max;
+  }
+
+  if (left)  left.addEventListener('click',  function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+  if (right) right.addEventListener('click', function () { track.scrollBy({ left:  step(), behavior: 'smooth' }); });
+  track.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', layout);
+  window.addEventListener('load', layout);
+  layout();
+})();
+</script>
 
 <span id="overview"></span>
 
