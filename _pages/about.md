@@ -54,7 +54,7 @@ redirect_from:
     if (isPC()) {
       var vw = document.documentElement.clientWidth;          // スクロールバー幅を除いた表示幅
       var l  = Math.max(0, wrap.getBoundingClientRect().left);// 自然な左端
-      var pad = 28;                                           // 画面端からの最小余白（小さめ）
+      var pad = 6;                                            // 画面端からの余白（ほぼゼロ）
       wrap.style.width = vw + 'px';                           // 端から端まで
       wrap.style.marginLeft = (-l) + 'px';                    // ビューポート左端へ寄せる
       wrap.style.paddingLeft = pad + 'px';                    // 左右の余白は最小限に
