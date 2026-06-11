@@ -183,14 +183,24 @@
   .grand-challenge .en { display: block; margin-top: 0.7em; font-size: 0.9em; color: #555; }
 
   /* コンセプト図 2枚並べ（クリックで論文へ） */
+  /* コンセプト図：News と同じ横スクロールカルーセル */
+  .concept-carousel-wrap { position: relative; box-sizing: border-box; margin: 1.2em 0; }
   .concept-figs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    align-items: flex-start;
     gap: 1em;
-    margin: 1.2em 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.4em;
+    margin: 0;
   }
+  .concept-figs::-webkit-scrollbar { display: none; }
   .concept-fig {
-    display: block;
+    flex: 0 0 min(88vw, 600px);
+    scroll-snap-align: start;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 1px 6px rgba(0,0,0,0.12);
@@ -198,8 +208,28 @@
   }
   .concept-fig:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
   .concept-fig img { width: 100%; display: block; }
-  @media (max-width: 600px) {
-    .concept-figs { grid-template-columns: 1fr; }
+  /* コンセプト図カルーセルの矢印（縦中央） */
+  .concept-arrow {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    z-index: 5;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: none; border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    color: #333; font-size: 1.7em; line-height: 1; padding: 0 0 0.12em;
+    cursor: pointer; opacity: 0;
+    transition: opacity 0.2s ease, background 0.15s, box-shadow 0.15s;
+  }
+  .concept-carousel-wrap:hover .concept-arrow,
+  .concept-carousel-wrap:focus-within .concept-arrow { opacity: 1; }
+  .concept-arrow:hover { background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.25); }
+  .concept-arrow[hidden] { display: none; }
+  .concept-arrow--left  { left: 14px; }
+  .concept-arrow--right { right: 14px; }
+  @media (max-width: 768px) {
+    .concept-arrow { display: none; }
   }
 
   .keywords {
@@ -751,10 +781,15 @@
     el.style.width = ''; el.style.marginLeft = ''; el.style.marginRight = '';
     el.style.paddingLeft = ''; el.style.paddingRight = '';
   }
-  function updateNewsArrows() {
-    var track = document.querySelector('.news-carousel');
-    var lb = document.querySelector('.news-arrow--left');
-    var rb = document.querySelector('.news-arrow--right');
+  /* 横スクロールカルーセル（News とコンセプト図）の共通設定 */
+  var CAROUSELS = [
+    { wrap: '.news-carousel-wrap',    track: '.news-carousel', item: '.news-card',   left: '.news-arrow--left',    right: '.news-arrow--right',    pad: 6 },
+    { wrap: '.concept-carousel-wrap', track: '.concept-figs',  item: '.concept-fig', left: '.concept-arrow--left',  right: '.concept-arrow--right', pad: 6 }
+  ];
+  function updateArrows(cfg) {
+    var track = document.querySelector(cfg.track);
+    var lb = document.querySelector(cfg.left);
+    var rb = document.querySelector(cfg.right);
     if (!track || !lb || !rb) return;
     var overflow = track.scrollWidth > track.clientWidth + 2;
     var max = track.scrollWidth - track.clientWidth - 1;
@@ -764,36 +799,41 @@
   }
   function fitWide() {
     bleed(document.querySelector('.hero-slideshow'), null);
-    var wrap = document.querySelector('.news-carousel-wrap');
-    if (wrap) {
-      if (window.innerWidth >= 769) { bleed(wrap, 6); } else { clearBleed(wrap); }
-    }
-    updateNewsArrows();
+    CAROUSELS.forEach(function (cfg) {
+      var wrap = document.querySelector(cfg.wrap);
+      if (!wrap) return;
+      if (window.innerWidth >= 769) { bleed(wrap, cfg.pad); } else { clearBleed(wrap); }
+      updateArrows(cfg);
+    });
   }
-  /* ニュース矢印のクリック・スクロール */
-  (function () {
-    var track = document.querySelector('.news-carousel');
-    if (!track) return;
-    var lb = document.querySelector('.news-arrow--left');
-    var rb = document.querySelector('.news-arrow--right');
-    function step() {
-      var c = track.querySelector('.news-card');
-      var w = c ? c.getBoundingClientRect().width : 280;
-      return Math.max(w + 22, track.clientWidth * 0.8);
-    }
-    if (lb) lb.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
-    if (rb) rb.addEventListener('click', function () { track.scrollBy({ left:  step(), behavior: 'smooth' }); });
-    track.addEventListener('scroll', updateNewsArrows, { passive: true });
-  })();
+  /* 矢印のクリック・スクロール（DOM 構築後に初期化） */
+  function initCarousels() {
+    CAROUSELS.forEach(function (cfg) {
+      var track = document.querySelector(cfg.track);
+      if (!track || track.dataset.cinit) return;
+      track.dataset.cinit = '1';
+      var lb = document.querySelector(cfg.left);
+      var rb = document.querySelector(cfg.right);
+      function step() {
+        var c = track.querySelector(cfg.item);
+        var w = c ? c.getBoundingClientRect().width : 300;
+        return Math.max(w + 22, track.clientWidth * 0.8);
+      }
+      if (lb) lb.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+      if (rb) rb.addEventListener('click', function () { track.scrollBy({ left:  step(), behavior: 'smooth' }); });
+      track.addEventListener('scroll', function () { updateArrows(cfg); }, { passive: true });
+    });
+  }
   function reveal() { document.documentElement.classList.remove('prepaint'); }
-  window.addEventListener('load', function () { fitWide(); requestAnimationFrame(function () { fitWide(); reveal(); }); });
+  window.addEventListener('load', function () { initCarousels(); fitWide(); requestAnimationFrame(function () { fitWide(); reveal(); }); });
   window.addEventListener('resize', fitWide);
   document.addEventListener('DOMContentLoaded', function () {
+    initCarousels();
     fitWide();
     /* レイアウト確定（次フレーム）でちらつきを出さずに表示 */
     requestAnimationFrame(function () { fitWide(); requestAnimationFrame(reveal); });
   });
-  setTimeout(fitWide, 300);
+  setTimeout(function () { initCarousels(); fitWide(); }, 300);
   setTimeout(reveal, 2000);   /* 保険 */
 })();
 </script>

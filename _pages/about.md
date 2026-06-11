@@ -44,11 +44,15 @@ redirect_from:
 
 <p class="keywords">キーワード： 生体データ通信、全身無線通信・給電服、メアンダコイル、二次元無線技術、スキンエレクトロニクス、NFC VHBR（高速NFC）</p>
 
-<div class="concept-figs">
-  <a class="concept-fig" href="https://arxiv.org/abs/2503.13240" target="_blank" rel="noopener"><img loading="lazy" src="{{ base_path }}/images/concept/concept1.jpg" alt="皮膚近傍に電磁界を閉じ込める「全身無線通信・給電服」"></a>
-  <a class="concept-fig" href="https://www.nature.com/articles/s41928-019-0354-7" target="_blank" rel="noopener"><img loading="lazy" src="{{ base_path }}/images/concept/concept2.jpg" alt="医療インフラを病院から日常へ"></a>
-  <div class="concept-fig"><img loading="lazy" src="{{ base_path }}/images/concept/concept3.jpg" alt="挑戦：3次元から2次元の無線通信・給電技術へ"></div>
-  <div class="concept-fig"><img loading="lazy" src="{{ base_path }}/images/concept/concept4.jpg" alt="標準化戦略：次世代のNFCを目指して"></div>
+<div class="concept-carousel-wrap">
+  <button class="concept-arrow concept-arrow--left" type="button" aria-label="前へ" hidden>&#8249;</button>
+  <div class="concept-figs">
+    <a class="concept-fig" href="https://arxiv.org/abs/2503.13240" target="_blank" rel="noopener"><img loading="lazy" src="{{ base_path }}/images/concept/concept1.jpg" alt="皮膚近傍に電磁界を閉じ込める「全身無線通信・給電服」"></a>
+    <a class="concept-fig" href="https://www.nature.com/articles/s41928-019-0354-7" target="_blank" rel="noopener"><img loading="lazy" src="{{ base_path }}/images/concept/concept2.jpg" alt="医療インフラを病院から日常へ"></a>
+    <div class="concept-fig"><img loading="lazy" src="{{ base_path }}/images/concept/concept3.jpg" alt="挑戦：3次元から2次元の無線通信・給電技術へ"></div>
+    <div class="concept-fig"><img loading="lazy" src="{{ base_path }}/images/concept/concept4.jpg" alt="標準化戦略：次世代のNFCを目指して"></div>
+  </div>
+  <button class="concept-arrow concept-arrow--right" type="button" aria-label="次へ" hidden>&#8250;</button>
 </div>
 
 <div class="ext-links">
