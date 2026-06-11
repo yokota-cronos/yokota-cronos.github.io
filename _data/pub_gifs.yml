@@ -1,0 +1,6 @@
+# Publication 一覧の各論文の左隣に表示する GIF（YouTube 動画の注目シーンを切り抜いたもの）。
+# キー   = YouTube 動画ID（publications.csv の youtube 列のURLから自動抽出される）
+# 値     = images/publications/ 配下の GIF ファイル名（http から始まるフルURLも可）
+# ※ publications.csv はスプレッドシートから毎日自動更新されるため、GIF対応はこの別ファイルで管理する。
+"7RazVNMx0Ms": "picoring-mouse.gif"   # picoRing mouse (UIST 2025)
+"xxEWxeqx-Bg": "body-scale-nfc.gif"   # Body-scale NFC for wearables (CHI 2026)

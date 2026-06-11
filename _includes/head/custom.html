@@ -277,8 +277,13 @@
   .member-links {
     margin-top: 0.7em;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 7px;
+    /* 1行あたり最大5アイコン（34px×5 + gap7px×4 = 198px）。超過分は次の行へ折り返す */
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .member-links .ico {
     display: inline-flex;
@@ -295,9 +300,12 @@
   .member-links .ico i { font-size: 1.0em; }
   .ico-mail { background: #c0392b; }            /* email */
   .ico-scholar { background: #4285f4; }         /* Google Scholar */
+  .ico-acm  { background: #0085ca; }            /* ACM Digital Library */
+  .ico-rg   { background: #00ccbb; }            /* ResearchGate */
   .ico-rmap { background: #008e9b; }            /* researchmap (teal) */
   .ico-web  { background: #5b7184; }            /* webpage (slate) */
   .ico-x    { background: #000000; }            /* X */
+  .ico-ig   { background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); } /* Instagram */
   .ico-li   { background: #0a66c2; }            /* LinkedIn */
   .rmap-txt { font-weight: 700; font-size: 0.82em; letter-spacing: 0.02em; }
 
@@ -369,9 +377,23 @@
   .pub-links a:not(:first-child)::before { content: "|"; color: #c4c4c4; margin-right: 0.5em; }
   .pub-thumb { flex: 0 0 220px; }
   .pub-thumb img { width: 100%; border-radius: 6px; display: block; border: 1px solid #eee; }
+  /* 各論文の左隣に表示する GIF（YouTube 動画の切り抜き） */
+  .pub-gif { flex: 0 0 190px; }
+  .pub-gif a { position: relative; display: block; line-height: 0; }
+  .pub-gif img { width: 100%; border-radius: 6px; display: block; border: 1px solid #eee; background: #f3f3f3; }
+  .pub-gif-play {
+    position: absolute; left: 8px; bottom: 8px;
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.55); color: #fff; font-size: 11px;
+    padding-left: 2px; pointer-events: none;
+    transition: background 0.15s ease;
+  }
+  .pub-gif a:hover .pub-gif-play { background: rgba(220,40,40,0.9); }
   @media (max-width: 600px) {
     .pub-entry { flex-direction: column; gap: 0.7em; }
     .pub-thumb { flex: none; width: 100%; max-width: 320px; }
+    .pub-gif { flex: none; width: 100%; max-width: 320px; }
   }
 
   /* News cards */

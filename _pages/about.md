@@ -68,9 +68,12 @@ redirect_from:
     <div class="member-links">
       {% if m.email and m.email != "" %}<a class="ico ico-mail" href="mailto:{{ m.email }}" title="Email"><i class="fas fa-envelope" aria-hidden="true"></i><span class="sr-only">Email</span></a>{% endif %}
       {% if m.scholar and m.scholar != "" %}<a class="ico ico-scholar" href="{{ m.scholar }}" title="Google Scholar" target="_blank" rel="noopener"><i class="ai ai-google-scholar" aria-hidden="true"></i><span class="sr-only">Google Scholar</span></a>{% endif %}
+      {% if m.acm and m.acm != "" %}<a class="ico ico-acm" href="{{ m.acm }}" title="ACM Digital Library" target="_blank" rel="noopener"><i class="ai ai-acmdl" aria-hidden="true"></i><span class="sr-only">ACM Digital Library</span></a>{% endif %}
+      {% if m.researchgate and m.researchgate != "" %}<a class="ico ico-rg" href="{{ m.researchgate }}" title="ResearchGate" target="_blank" rel="noopener"><i class="ai ai-researchgate" aria-hidden="true"></i><span class="sr-only">ResearchGate</span></a>{% endif %}
       {% if m.researchmap and m.researchmap != "" %}<a class="ico ico-rmap" href="{{ m.researchmap }}" title="researchmap" target="_blank" rel="noopener"><span class="rmap-txt" aria-hidden="true">rm</span><span class="sr-only">researchmap</span></a>{% endif %}
       {% if m.website and m.website != "" %}<a class="ico ico-web" href="{{ m.website }}" title="Webpage" target="_blank" rel="noopener"><i class="fas fa-globe" aria-hidden="true"></i><span class="sr-only">Webpage</span></a>{% endif %}
       {% if m.x and m.x != "" %}<a class="ico ico-x" href="{{ m.x }}" title="X" target="_blank" rel="noopener"><i class="fab fa-x-twitter" aria-hidden="true"></i><span class="sr-only">X</span></a>{% endif %}
+      {% if m.instagram and m.instagram != "" %}<a class="ico ico-ig" href="{{ m.instagram }}" title="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">Instagram</span></a>{% endif %}
       {% if m.linkedin and m.linkedin != "" %}<a class="ico ico-li" href="{{ m.linkedin }}" title="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a>{% endif %}
     </div>
     {% if m.bio and m.bio != "" %}<div class="member-bio" role="tooltip">{{ m.bio }}</div>{% endif %}
@@ -88,6 +91,8 @@ redirect_from:
 {% for p in grp.items %}
   {% if p.title and p.title != "" %}
   <div class="pub-entry">
+    {% assign yt = p.youtube | default: p.video %}{% assign pgif = "" %}{% if yt and yt != "" %}{% if yt contains "v=" %}{% assign vid = yt | split: "v=" | last | split: "&" | first %}{% elsif yt contains "youtu.be/" %}{% assign vid = yt | split: "youtu.be/" | last | split: "?" | first %}{% else %}{% assign vid = "" %}{% endif %}{% if vid and vid != "" %}{% assign pgif = site.data.pub_gifs[vid] %}{% endif %}{% endif %}
+    {% if pgif and pgif != "" %}<div class="pub-gif"><a href="{{ yt }}" target="_blank" rel="noopener" title="YouTube で再生">{% if pgif contains "http" %}<img loading="lazy" src="{{ pgif }}" alt="">{% else %}<img loading="lazy" src="{{ base_path }}/images/publications/{{ pgif }}" alt="">{% endif %}<span class="pub-gif-play" aria-hidden="true">▶</span></a></div>{% endif %}
     <div class="pub-main">
       {% if p.authors and p.authors != "" %}{% assign fn = p.first_authors | default: "" | replace: ", ", "|" | replace: ",", "|" | strip %}{% assign first_norm = "|" | append: fn | append: "|" %}{% assign cn = p.corresponding_authors | default: "" | replace: ", ", "|" | replace: ",", "|" | strip %}{% assign corr_norm = "|" | append: cn | append: "|" %}{% capture authorsfmt %}{% assign alist = p.authors | split: "," %}{% for a in alist %}{% assign an = a | strip %}{% if an != "" %}{% assign parts = an | split: " " %}{% for part in parts %}{% if part != "" %}{% if forloop.last %}{{ part }}{% else %}{{ part | slice: 0 }}. {% endif %}{% endif %}{% endfor %}{% assign namekey = "|" | append: an | append: "|" %}{% if first_norm contains namekey %}*{% endif %}{% if corr_norm contains namekey %}†{% endif %}{% unless forloop.last %}, {% endunless %}{% endif %}{% endfor %}{% endcapture %}<div class="pub-authors">{{ authorsfmt | strip }}</div>{% endif %}
       <div class="pub-title">{{ p.title | markdownify | remove: "<p>" | remove: "</p>" | strip }}</div>
@@ -136,25 +141,25 @@ redirect_from:
     <a class="loc-map-link" href="https://maps.app.goo.gl/PxrPWSs3PryMg9fM9" target="_blank" rel="noopener" title="Google マップで開く"><iframe class="loc-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
       src="https://maps.google.com/maps?q=35.9034904,139.9385322&z=17&output=embed"></iframe></a>
     <div class="loc-name">東京大学 柏キャンパス</div>
-    <div class="loc-addr">〒277-8568 千葉県柏市柏の葉5-1-5<br>第２総合研究棟 117号室</div>
+    <div class="loc-addr">〒277-8568 千葉県柏市柏の葉5-1-5<br>東京大学　柏キャンパス　第２総合研究棟 117号室<br>高橋 亮</div>
   </div>
   <div class="loc-card">
     <a class="loc-map-link" href="https://www.google.com/maps/search/?api=1&query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%87%E4%BA%AC%E5%8C%BA%E5%BC%A5%E7%94%9F2-11-16+%E6%9D%B1%E4%BA%AC%E5%A4%A7%E5%AD%A6%E6%9C%AC%E9%83%B7%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%91%E3%82%B9+%E5%B7%A5%E5%AD%A6%E9%83%A810%E5%8F%B7%E9%A4%A8" target="_blank" rel="noopener" title="Google マップで開く"><iframe class="loc-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
       src="https://maps.google.com/maps?q=%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%96%87%E4%BA%AC%E5%8C%BA%E5%BC%A5%E7%94%9F2-11-16+%E6%9D%B1%E4%BA%AC%E5%A4%A7%E5%AD%A6%E6%9C%AC%E9%83%B7%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%91%E3%82%B9+%E5%B7%A5%E5%AD%A6%E9%83%A810%E5%8F%B7%E9%A4%A8&z=16&output=embed"></iframe></a>
     <div class="loc-name">東京大学 本郷キャンパス（浅野地区）横田研究室</div>
-    <div class="loc-addr">〒113-0032 東京都文京区弥生2-11-16<br>工学部10号館 3F 330号室</div>
+    <div class="loc-addr">〒113-0032 東京都文京区弥生2-11-16<br>東京大学　工学部10号館 3F 330号室</div>
   </div>
   <div class="loc-card">
     <a class="loc-map-link" href="https://www.google.com/maps/search/?api=1&query=%E9%AB%98%E7%9F%A5%E7%9C%8C%E9%A6%99%E7%BE%8E%E5%B8%82%E5%9C%9F%E4%BD%90%E5%B1%B1%E7%94%B0%E7%94%BA%E5%AE%AE%E3%83%8E%E5%8F%A3185+%E9%AB%98%E7%9F%A5%E5%B7%A5%E7%A7%91%E5%A4%A7%E5%AD%A6" target="_blank" rel="noopener" title="Google マップで開く"><iframe class="loc-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
       src="https://maps.google.com/maps?q=%E9%AB%98%E7%9F%A5%E7%9C%8C%E9%A6%99%E7%BE%8E%E5%B8%82%E5%9C%9F%E4%BD%90%E5%B1%B1%E7%94%B0%E7%94%BA%E5%AE%AE%E3%83%8E%E5%8F%A3185+%E9%AB%98%E7%9F%A5%E5%B7%A5%E7%A7%91%E5%A4%A7%E5%AD%A6&z=15&output=embed"></iframe></a>
     <div class="loc-name">高知工科大学 システム工学群 野田研究室</div>
-    <div class="loc-addr">〒782-8502 高知県香美市土佐山田町宮ノ口185<br>野田 聡人</div>
+    <div class="loc-addr">〒782-8502 高知県香美市土佐山田町宮ノ口185<br>高知工科大学 A棟A405電子事務室<br>野田 聡人<br>Tel: 0887-53-1010</div>
   </div>
   <div class="loc-card">
     <a class="loc-map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%8C%97%E6%B5%B7%E9%81%93%E5%87%BD%E9%A4%A8%E5%B8%82%E4%BA%80%E7%94%B0%E4%B8%AD%E9%87%8E%E7%94%BA116-2+%E5%85%AC%E7%AB%8B%E3%81%AF%E3%81%93%E3%81%A0%E3%81%A6%E6%9C%AA%E6%9D%A5%E5%A4%A7%E5%AD%A6" target="_blank" rel="noopener" title="Google マップで開く"><iframe class="loc-map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
       src="https://maps.google.com/maps?q=%E5%8C%97%E6%B5%B7%E9%81%93%E5%87%BD%E9%A4%A8%E5%B8%82%E4%BA%80%E7%94%B0%E4%B8%AD%E9%87%8E%E7%94%BA116-2+%E5%85%AC%E7%AB%8B%E3%81%AF%E3%81%93%E3%81%A0%E3%81%A6%E6%9C%AA%E6%9D%A5%E5%A4%A7%E5%AD%A6&z=15&output=embed"></iframe></a>
     <div class="loc-name">公立はこだて未来大学 システム情報科学部 石田研究室</div>
-    <div class="loc-addr">〒041-8655 北海道函館市亀田中野町116-2<br>石田 繁巳</div>
+    <div class="loc-addr">〒041-8655 北海道函館市亀田中野町116-2<br>石田 繁巳<br>Tel: 0138-34-6477</div>
   </div>
 </div>
 
