@@ -717,7 +717,7 @@
       slides[i].classList.remove('is-active');
       i = (i + 1) % slides.length;
       slides[i].classList.add('is-active');
-    }, 5000);
+    }, 4000);
   });
 
   /* トップ画像・ニュースカルーセルをコンテナのグリッドオフセットに関わらず
@@ -756,7 +756,7 @@
     }
     updateNewsArrows();
   }
-  // ニュース矢印のクリック/スクロール
+  /* ニュース矢印のクリック・スクロール */
   (function () {
     var track = document.querySelector('.news-carousel');
     if (!track) return;
