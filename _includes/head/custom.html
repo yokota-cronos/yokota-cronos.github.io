@@ -767,14 +767,17 @@
   /* トップ画像・ニュースカルーセルをコンテナのグリッドオフセットに関わらず
      画面いっぱい（左右余白ゼロ）に。.page が Susy グリッドで中央寄せでないため、
      実測して margin で補正する（front 画像と全く同じ仕組み）。 */
-  function bleed(el, pad) {
+  function bleed(el, pad, padLeft) {
     if (!el) return;
     el.style.width = '100vw';
     el.style.marginLeft = '0';
     el.style.marginRight = '0';
     var left = el.getBoundingClientRect().left;
     el.style.marginLeft = (-left) + 'px';
-    if (pad != null) { el.style.paddingLeft = pad + 'px'; el.style.paddingRight = pad + 'px'; }
+    if (pad != null) {
+      el.style.paddingLeft = (padLeft != null ? padLeft : pad) + 'px';
+      el.style.paddingRight = pad + 'px';
+    }
   }
   function clearBleed(el) {
     if (!el) return;
@@ -783,7 +786,7 @@
   }
   /* 横スクロールカルーセル（News とコンセプト図）の共通設定 */
   var CAROUSELS = [
-    { wrap: '.news-carousel-wrap',    track: '.news-carousel', item: '.news-card',   left: '.news-arrow--left',    right: '.news-arrow--right',    pad: 6 },
+    { wrap: '.news-carousel-wrap',    track: '.news-carousel', item: '.news-card',   left: '.news-arrow--left',    right: '.news-arrow--right',    pad: 6, padLeft: 40 },
     { wrap: '.concept-carousel-wrap', track: '.concept-figs',  item: '.concept-fig', left: '.concept-arrow--left',  right: '.concept-arrow--right', pad: 6 }
   ];
   function updateArrows(cfg) {
@@ -802,7 +805,7 @@
     CAROUSELS.forEach(function (cfg) {
       var wrap = document.querySelector(cfg.wrap);
       if (!wrap) return;
-      if (window.innerWidth >= 769) { bleed(wrap, cfg.pad); } else { clearBleed(wrap); }
+      if (window.innerWidth >= 769) { bleed(wrap, cfg.pad, cfg.padLeft); } else { clearBleed(wrap); }
       updateArrows(cfg);
     });
   }
