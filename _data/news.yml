@@ -49,6 +49,14 @@
   image: "smm_award.jpg"
   url: "https://sensorsymposium.org/2025/wp-content/uploads/sites/5/SS42_Award_Winners.pdf"
 
+- key: "2025-10-19-1"
+  date: "2025-10-19"
+  category: "発表"
+  title: "Presented at IEEE IROS 2025"
+  text: "Joint-Repositionable Inner-Wireless Planar Snake Robot を IEEE IROS 2025 にて発表"
+  image: "iros2025.jpg"
+  url: "https://ieeexplore.ieee.org/document/10943134"
+
 - key: "2025-10-01-2"
   date: "2025-10-01"
   category: "発表"
