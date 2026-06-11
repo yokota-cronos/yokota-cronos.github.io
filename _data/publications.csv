@@ -46,3 +46,13 @@
   year = {2025},
   copyright = {arXiv.org perpetual, non-exclusive license}
 }"
+2026,"Hideaki Yamamoto, Yifan Li, Yoshihiro Kawahara, Ryo Takahashi",picoRing dual: ultralow-power bimanual ring controllers for everyday AR,ACM ISWC,picoring_dual.pdf,,,,,,,Hideaki Yamamoto,Ryo Takahashi,,,1-8,"@inproceedings{Yamamoto_2026_picoRing_dual,
+  series={ISWC '26},
+  title={picoRing dual: ultralow-power bimanual ring controllers for everyday AR},
+  booktitle={Proceedings of the 2026 ACM International Symposium on Wearable Computers},
+  publisher={ACM},
+  author={Yamamoto, Hideaki and Li, Yifan and Kawahara, Yoshihiro and Takahashi, Ryo},
+  year={2026},
+  pages={1–8},
+  collection={ISWC '26}
+}"
