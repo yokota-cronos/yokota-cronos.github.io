@@ -1,5 +1,5 @@
-year,authors,title,publisher,pdf,doi,youtube,code,arxiv,press,media,first_authors,corresponding_authors,volume,number,pages,bibtex
-2025,"Yifan Li, Masaaki Fukumoto, Mohamed Kari, Shigemi Ishida, Akihito Noda, Tomoyuki Yokota, Takao Someya, Yoshihiro Kawahara, Ryo Takahashi ",picoRing mouse: ultra-low-power ring-based wireless tinymouse,ACM UIST,,https://dl.acm.org/doi/10.1145/3746059.3747615,https://www.youtube.com/watch?v=7RazVNMx0Ms,https://github.com/KawaharaLab/picoRing_mouse,https://arxiv.org/abs/2504.03253,https://www.t.u-tokyo.ac.jp/press/pr2025-10-01-003,https://wired.jp/article/picoring-wearable-controller/ https://techxplore.com/news/2025-10-lord-mouse-lightweight-based-month.html https://gizmodo.com/smart-glasses-are-forcing-wearables-to-get-very-weird-2000674309 https://www.livescience.com/technology/computing/new-smart-ring-is-a-novel-way-to-control-your-computer-it-has-the-humble-mouse-firmly-in-its-sights,Yifan Li,Ryo Takahashi,,,1-12,"@inproceedings{Li_2025_picoRing_mouse,
+"year","authors","title","publisher","pdf","doi","youtube","code","arxiv","press","media","first_authors","corresponding_authors","volume","number","pages","bibtex"
+"2025","Yifan Li, Masaaki Fukumoto, Mohamed Kari, Shigemi Ishida, Akihito Noda, Tomoyuki Yokota, Takao Someya, Yoshihiro Kawahara, Ryo Takahashi ","picoRing mouse: ultra-low-power ring-based wireless tinymouse","ACM UIST","","https://dl.acm.org/doi/10.1145/3746059.3747615","https://www.youtube.com/watch?v=7RazVNMx0Ms","https://github.com/KawaharaLab/picoRing_mouse","https://arxiv.org/abs/2504.03253","https://www.t.u-tokyo.ac.jp/press/pr2025-10-01-003","https://wired.jp/article/picoring-wearable-controller/ https://techxplore.com/news/2025-10-lord-mouse-lightweight-based-month.html https://gizmodo.com/smart-glasses-are-forcing-wearables-to-get-very-weird-2000674309 https://www.livescience.com/technology/computing/new-smart-ring-is-a-novel-way-to-control-your-computer-it-has-the-humble-mouse-firmly-in-its-sights","Yifan Li","Ryo Takahashi","","","1-12","@inproceedings{Li_2025,
   series={UIST ’25},
   title={Ultra-low-power ring-based wireless tinymouse},
   url={http://dx.doi.org/10.1145/3746059.3747615},
@@ -12,7 +12,7 @@ year,authors,title,publisher,pdf,doi,youtube,code,arxiv,press,media,first_author
   pages={1–12},
   collection={UIST ’25}
 }"
-2026,"Hideaki Yamamoto, Yifan Li, Wakako Yukita, Tomoyuki Yokota, Takao Someya, Ryo Takahashi, Yoshihiro Kawahara",Body-scale NFC for wearables: human-centric body-scale NFC networking for ultra-low-power wearable devices,ACM CHI Interactivity,,https://dl.acm.org/doi/10.1145/3772363.3799126,https://youtu.be/xxEWxeqx-Bg,,https://arxiv.org/abs/2603.04777,,,"Yifan Li, Hideaki Yamamoto","Ryo Takahashi, Yoshihiro Kawahara",,,1-6,"@inproceedings{Yamamoto_2026_body-scale_NFC,
+"2026","Hideaki Yamamoto, Yifan Li, Wakako Yukita, Tomoyuki Yokota, Takao Someya, Ryo Takahashi, Yoshihiro Kawahara","Body-scale NFC for wearables: human-centric body-scale NFC networking for ultra-low-power wearable devices","ACM CHI Interactivity","","https://dl.acm.org/doi/10.1145/3772363.3799126","https://youtu.be/xxEWxeqx-Bg","","https://arxiv.org/abs/2603.04777","","","Yifan Li, Hideaki Yamamoto","Ryo Takahashi, Yoshihiro Kawahara","","","1-6","@inproceedings{Yamamoto_2026,
   series={CHI EA ’26},
   title={Body-scale NFC for wearables: human-centric body-scale NFC networking for ultra-low-power wearable devices (Demo of UTokyo Kawahara Lab 2025)},
   url={http://dx.doi.org/10.1145/3772363.3799126},
@@ -25,7 +25,7 @@ year,authors,title,publisher,pdf,doi,youtube,code,arxiv,press,media,first_author
   pages={1–6},
   collection={CHI EA ’26}
 }"
-2025,"Ryo Takahashi, Takashi Sato, Wakako Yukita, Tomoyuki Yokota, Takao Someya, Yoshihiro Kawahara",Full-body WPT: Wireless Powering with Meandered E-textiles,Companion of the 2025 ACM International Joint Conference on Pervasive and Ubiquitous Computing,,https://dl.acm.org/doi/10.1145/3714394.3750714,https://www.youtube.com/watch?v=1u3vBoVZhGk,,https://arxiv.org/abs/2506.17606,,,Ryo Takahashi,Ryo Takahashi,,,529-533,"@inproceedings{Takahashi_2025_full-body_WPT,
+"2025","Ryo Takahashi, Takashi Sato, Wakako Yukita, Tomoyuki Yokota, Takao Someya, Yoshihiro Kawahara","Full-body WPT: Wireless Powering with Meandered E-textiles","Companion of the 2025 ACM International Joint Conference on Pervasive and Ubiquitous Computing","","https://dl.acm.org/doi/10.1145/3714394.3750714","https://www.youtube.com/watch?v=1u3vBoVZhGk","","https://arxiv.org/abs/2506.17606","","","Ryo Takahashi","Ryo Takahashi","","","529-533","@inproceedings{Takahashi_2025,
   title={Full-body WPT: Wireless Powering with Meandered E-textiles},
   url={http://dx.doi.org/10.1145/3714394.3750714},
   DOI={10.1145/3714394.3750714},
@@ -36,7 +36,7 @@ year,authors,title,publisher,pdf,doi,youtube,code,arxiv,press,media,first_author
   month=Oct,
   pages={529–533}
 }"
-2025,"Ryo Takahashi, Changyo Han, Wakako Yukita, John S. Ho, Takuya Sasatani, Akihito Noda, Tomoyuki Yokota, Takao Someya, Yoshihiro Kawahara",Full-body NFC: body-scale near-field sensor networks with machine-knittable meandered e-textiles,arXiv preprint arXiv:2503.13240,,,https://www.youtube.com/watch?v=W2G3oauD6aM,,https://arxiv.org/abs/2503.13240,,,Ryo Takahashi,Ryo Takahashi,,,,"@misc{Takahashi_2025_full-body_NFC,
+"2025","Ryo Takahashi, Changyo Han, Wakako Yukita, John S. Ho, Takuya Sasatani, Akihito Noda, Tomoyuki Yokota, Takao Someya, Yoshihiro Kawahara","Full-body NFC: body-scale near-field sensor networks with machine-knittable meandered e-textiles","arXiv preprint arXiv:2503.13240","","","https://www.youtube.com/watch?v=W2G3oauD6aM","","https://arxiv.org/abs/2503.13240","","","Ryo Takahashi","Ryo Takahashi","","","","@misc{https://doi.org/10.48550/arxiv.2503.13240,
   doi = {10.48550/ARXIV.2503.13240},
   url = {https://arxiv.org/abs/2503.13240},
   author = {Takahashi, Ryo and Han, Changyo and Yukita, Wakako and Ho, John S. and Sasatani, Takuya and Noda, Akihito and Yokota, Tomoyuki and Someya, Takao and Kawahara, Yoshihiro},
