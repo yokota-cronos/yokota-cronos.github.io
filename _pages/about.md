@@ -42,23 +42,28 @@ redirect_from:
   var track = wrap.querySelector('.news-carousel');
   var left  = wrap.querySelector('.news-arrow--left');
   var right = wrap.querySelector('.news-arrow--right');
+  var PAD = 6;                                       // 画面端からの余白（ほぼゼロ）
 
   function isPC() { return window.innerWidth >= 769; }
 
   function layout() {
-    // いったんリセットして自然な位置を測る
-    wrap.style.width = '';
     wrap.style.marginLeft = '';
+    wrap.style.marginRight = '';
     wrap.style.paddingLeft = '';
     wrap.style.paddingRight = '';
     if (isPC()) {
-      var vw = document.documentElement.clientWidth;          // スクロールバー幅を除いた表示幅
-      var l  = Math.max(0, wrap.getBoundingClientRect().left);// 自然な左端
-      var pad = 6;                                            // 画面端からの余白（ほぼゼロ）
-      wrap.style.width = vw + 'px';                           // 端から端まで
-      wrap.style.marginLeft = (-l) + 'px';                    // ビューポート左端へ寄せる
-      wrap.style.paddingLeft = pad + 'px';                    // 左右の余白は最小限に
-      wrap.style.paddingRight = pad + 'px';
+      var vw = document.documentElement.clientWidth;        // スクロールバー幅を除いた表示幅
+      // wrap 自身ではなく、再スタイルしない親要素のコンテンツ左右端を測る（測定ズレに強い）
+      var p  = wrap.parentNode;
+      var pr = p.getBoundingClientRect();
+      var cs = window.getComputedStyle(p);
+      var contentLeft  = pr.left  + (parseFloat(cs.paddingLeft)  || 0);
+      var contentRight = pr.right - (parseFloat(cs.paddingRight) || 0);
+      // 幅は指定せず、左右マージンを負にして 0〜vw いっぱいに広げる
+      wrap.style.marginLeft  = (-contentLeft) + 'px';        // 左端をビューポート左端(0)へ
+      wrap.style.marginRight = (-(vw - contentRight)) + 'px';// 右端をビューポート右端へ
+      wrap.style.paddingLeft  = PAD + 'px';
+      wrap.style.paddingRight = PAD + 'px';
     }
     update();
   }
@@ -81,7 +86,10 @@ redirect_from:
   if (right) right.addEventListener('click', function () { track.scrollBy({ left:  step(), behavior: 'smooth' }); });
   track.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', layout);
-  window.addEventListener('load', layout);
+  // レイアウト確定後にも再計算（画像/フォント読込やCSS適用前の測定ズレ対策）
+  window.addEventListener('load', function () { layout(); requestAnimationFrame(layout); });
+  setTimeout(layout, 300);
+  if (document.readyState === 'complete') requestAnimationFrame(layout);
   layout();
 })();
 </script>
