@@ -93,8 +93,8 @@
   }
   /* ナビ（タイトル下の行）の先頭リンクは太字にしない */
   .greedy-nav .visible-links li:first-child { font-weight: normal; }
-  /* ナビ（News, Team, ...）の文字サイズを1.5倍に */
-  .greedy-nav .visible-links a { font-size: 1.5em; }
+  /* ナビ（News, Team, ...）の文字サイズ */
+  .greedy-nav .visible-links a { font-size: 1.2em; }
   /* 狭い画面ではタイトルを折り返し可に */
   @media (max-width: 680px) {
     .masthead__brand .site-brand,
@@ -717,7 +717,7 @@
       slides[i].classList.remove('is-active');
       i = (i + 1) % slides.length;
       slides[i].classList.add('is-active');
-    }, 6000);
+    }, 5000);
   });
 
   /* トップ画像・ニュースカルーセルをコンテナのグリッドオフセットに関わらず
