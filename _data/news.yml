@@ -1,15 +1,17 @@
 # お知らせ / News（カード表示）。
-# key:   並び替え用キー（降順で表示）。同じ日付でも順番を制御できる。
-# date:  カードに表示する日付（"2025-10-01" など）
-# title: 見出し
-# text:  簡潔な説明
-# image: カード上部の画像ファイル名（images/news/ に置く。空 "" ならプレースホルダ表示）
-# url:   リンク（空 "" ならクリック不可）
+# key:      並び替え用キー（降順で表示）。同じ日付でも順番を制御できる。
+# date:     カードに表示する日付（"2025-10-01" など）
+# category: カード左上のバッジ。"受賞" / "告知" / "発表" / "採択" など内容で割り振る。
+# title:    見出し
+# text:     簡潔な説明
+# image:    カード上部の画像ファイル名（images/news/ に置く。空 "" ならプレースホルダ表示）
+# url:      リンク（空 "" ならクリック不可）
 #
 # ホームには最新5件、全件は /news/ ページに表示されます。
 
 - key: "2026-10-12-1"
   date: "2026-10-12"
+  category: "告知"
   title: "ACM UbiComp 2026 にて Workshop を開催（横田が Keynote）"
   text: "ACM UbiComp 2026 にて Workshop を開催。横田が Keynote 講演"
   image: "ubicomp_workshop.jpg"
@@ -17,6 +19,7 @@
 
 - key: "2026-06-04-1"
   date: "2026-06-04"
+  category: "受賞"
   title: "IEEE RA-L 2025 Best Paper Award を受賞"
   text: "高橋らが IEEE RA-L 2025 Best Paper Award を受賞"
   image: "ral_award.jpg"
@@ -24,6 +27,7 @@
 
 - key: "2026-03-17-1"
   date: "2026-03-17"
+  category: "受賞"
   title: "IEICE 北海道支部学生会インターネットシンポジウム 優秀発表賞を受賞"
   text: "井戸、石田らが IEICE 北海道支部学生会インターネットシンポジウムにて優秀発表賞を受賞"
   image: "ido_award.jpg"
@@ -31,6 +35,7 @@
 
 - key: "2026-02-27-1"
   date: "2026-02-27"
+  category: "受賞"
   title: "船井研究奨励賞を受賞"
   text: "高橋が2025年度 船井研究奨励賞を受賞"
   image: "funai_award.jpg"
@@ -38,6 +43,7 @@
 
 - key: "2025-11-12-1"
   date: "2025-11-12"
+  category: "受賞"
   title: "第42回「センサ・マイクロマシンと応用システム」シンポジウム 奨励賞を受賞"
   text: "高橋が奨励賞を受賞"
   image: "smm_award.jpg"
@@ -45,6 +51,7 @@
 
 - key: "2025-10-01-2"
   date: "2025-10-01"
+  category: "発表"
   title: "Presented at ACM UIST '25"
   text: "高橋らが ACM UIST にて発表"
   image: "uist.jpg"
@@ -52,6 +59,7 @@
 
 - key: "2025-10-01-1"
   date: "2025-10-01"
+  category: "採択"
   title: "Selected for JST CRONOS 2025"
   text: "JST CRONOS 2025年度 中尾領域に採択"
   image: "cronos.jpg"

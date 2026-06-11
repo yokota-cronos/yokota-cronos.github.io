@@ -404,7 +404,9 @@
     margin: 1.5em 0 1em;
   }
   .news-card {
-    display: block;
+    position: relative;
+    display: flex;
+    flex-direction: column;
     color: inherit !important;
     text-decoration: none !important;
     border: 1px solid #e6eaee;
@@ -424,10 +426,34 @@
   .news-thumb--ph {
     background: linear-gradient(135deg, #4385f5, #4385f5 60%, #00897b);
   }
-  .news-card-body { padding: 0.8em 0.9em 1em; }
+  /* カテゴリバッジ（左上） */
+  .news-badge {
+    position: absolute;
+    top: 0.7em;
+    left: 0.7em;
+    z-index: 1;
+    padding: 0.2em 0.7em;
+    font-size: 0.72em;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #fff;
+    border-radius: 999px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    letter-spacing: 0.02em;
+  }
+  .news-badge--award { background: #c79a2e; }   /* 受賞 */
+  .news-badge--info  { background: #4385f5; }    /* 告知 */
+  .news-badge--talk  { background: #00897b; }    /* 発表 */
+  .news-badge--grant { background: #7c4dff; }    /* 採択 */
+  .news-card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    padding: 0.8em 0.9em 1em;
+  }
   .news-card-title { font-weight: 700; font-size: 1.0em; line-height: 1.4; margin-bottom: 0.35em; }
   .news-card-text { font-size: 0.85em; color: #5b6b7b; line-height: 1.6; }
-  .news-card-date { font-size: 0.78em; font-weight: 700; color: #4385f5; margin-top: 0.7em; }
+  .news-card-date { font-size: 0.78em; font-weight: 700; color: #4385f5; margin-top: auto; padding-top: 0.7em; }
   .news-more { text-align: right; margin: 0.2em 0 0; font-size: 0.9em; }
   /* スマートフォンでは News を 2 件だけ表示 */
   @media (max-width: 600px) {
