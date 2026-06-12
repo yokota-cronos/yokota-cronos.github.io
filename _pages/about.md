@@ -22,7 +22,7 @@ redirect_from:
   <div class="news-carousel" id="newsCarousel">
 {% for n in news limit:12 %}
   {% if n.url and n.url != "" %}<a class="news-card" href="{{ n.url }}" target="_blank" rel="noopener">{% else %}<div class="news-card">{% endif %}
-    {% if n.category and n.category != "" %}{% case n.category %}{% when "受賞" %}{% assign badgeCls = "award" %}{% when "告知" %}{% assign badgeCls = "info" %}{% when "発表" %}{% assign badgeCls = "talk" %}{% when "採択" %}{% assign badgeCls = "grant" %}{% else %}{% assign badgeCls = "info" %}{% endcase %}<span class="news-badge news-badge--{{ badgeCls }}">{{ n.category }}</span>{% endif %}
+    {% if n.category and n.category != "" %}{% case n.category %}{% when "受賞" %}{% assign badgeCls = "award" %}{% when "告知" %}{% assign badgeCls = "info" %}{% when "発表" %}{% assign badgeCls = "talk" %}{% when "採択" %}{% assign badgeCls = "grant" %}{% when "講演" %}{% assign badgeCls = "lecture" %}{% else %}{% assign badgeCls = "info" %}{% endcase %}<span class="news-badge news-badge--{{ badgeCls }}">{{ n.category }}</span>{% endif %}
     {% if n.image and n.image != "" %}<img class="news-thumb" loading="lazy" src="{{ base_path }}/images/news/{{ n.image }}" alt="">{% else %}<div class="news-thumb news-thumb--ph"></div>{% endif %}
     <div class="news-card-body">
       <div class="news-card-title">{{ n.title }}</div>

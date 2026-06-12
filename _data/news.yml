@@ -1,7 +1,7 @@
 # お知らせ / News（カード表示）。
 # key:      並び替え用キー（降順で表示）。同じ日付でも順番を制御できる。
 # date:     カードに表示する日付（"2025-10-01" など）
-# category: カード左上のバッジ。"受賞" / "告知" / "発表" / "採択" など内容で割り振る。
+# category: カード左上のバッジ。"受賞" / "告知" / "発表" / "採択" / "講演" など内容で割り振る。
 # title:    見出し
 # image:    カード上部の画像ファイル名（images/news/ に置く。空 "" ならプレースホルダ表示）
 # url:      リンク（空 "" ならクリック不可）
@@ -63,6 +63,13 @@
   title: "Joint-Repositionable Inner-Wireless Planar Snake Robot を IEEE IROS 2025 にて発表"
   image: "iros2025.jpg"
   url: "https://ieeexplore.ieee.org/document/10943134"
+
+- key: "2025-10-17-1"
+  date: "2025-10-17"
+  category: "講演"
+  title: "高橋、野田が清華大学 Xi Tian 研究室で講演"
+  image: "tsinghua_talk.jpg"
+  url: "https://tian-xi.com/"
 
 - key: "2025-10-01-2"
   date: "2025-10-01"
