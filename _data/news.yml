@@ -18,7 +18,7 @@
 - key: "2026-06-04-1"
   date: "2026-06-04"
   category: "受賞"
-  title: "高橋らが IEEE RA-L 2025 Best Paper Award を受賞"
+  title: "高橋、横田らが IEEE RA-L 2025 Best Paper Award を受賞"
   image: "ral_award.jpg"
   url: "https://www.uec.ac.jp/news/newsrelease/2026/20260605_7740.html"
 
@@ -67,7 +67,7 @@
 - key: "2025-10-01-2"
   date: "2025-10-01"
   category: "発表"
-  title: "高橋らが ACM UIST にて発表"
+  title: "picoRing mouse を ACM UIST 2025 にて発表"
   image: "uist.jpg"
   url: "https://dl.acm.org/doi/10.1145/3746059.3747615"
 
