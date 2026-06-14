@@ -587,17 +587,10 @@
   .news-arrow--left  { left: 14px; }
   .news-arrow--right { right: 14px; }
 
-  /* モバイルではカルーセルを無効化し、縦並びグリッドで先頭3件のみ表示 */
+  /* スマホでも横スクロールのカルーセル（1枚＋次をチラ見せ、スワイプで切替） */
   @media (max-width: 768px) {
-    .news-carousel {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);   /* 小画面は 2 列 */
-      gap: 1em;
-      overflow: visible;
-    }
-    .news-carousel .news-card { width: auto; flex: 0 1 auto; }
-    .news-carousel .news-card:nth-child(n+5) { display: none; }  /* 2×2 = 4 件のみ */
-    .news-arrow { display: none; }
+    .news-carousel .news-card { flex: 0 0 82%; width: auto; }
+    .news-arrow { display: none; }   /* スマホはスワイプで切り替え（矢印なし） */
   }
 
   /* Locations */
