@@ -73,14 +73,14 @@ redirect_from:
     <div class="member-role">{{ m.role }}</div>
     <div class="member-aff">{{ m.affiliation | replace: ' ', '<br>' }}</div>
     <div class="member-links">
-      {% if m.email and m.email != "" %}<a class="ico ico-mail" href="mailto:{{ m.email }}" title="Email"><i class="fas fa-envelope" aria-hidden="true"></i><span class="sr-only">Email</span></a>{% endif %}
+      {% if m.website and m.website != "" %}<a class="ico ico-web" href="{{ m.website }}" title="Webpage" target="_blank" rel="noopener"><i class="fas fa-globe" aria-hidden="true"></i><span class="sr-only">Webpage</span></a>{% endif %}
+      {% if m.researchmap and m.researchmap != "" %}<a class="ico ico-rmap" href="{{ m.researchmap }}" title="researchmap" target="_blank" rel="noopener"><span class="rmap-txt" aria-hidden="true">rm</span><span class="sr-only">researchmap</span></a>{% endif %}
       {% if m.scholar and m.scholar != "" %}<a class="ico ico-scholar" href="{{ m.scholar }}" title="Google Scholar" target="_blank" rel="noopener"><i class="ai ai-google-scholar" aria-hidden="true"></i><span class="sr-only">Google Scholar</span></a>{% endif %}
+      {% if m.email and m.email != "" %}<a class="ico ico-mail" href="mailto:{{ m.email }}" title="Email"><i class="fas fa-envelope" aria-hidden="true"></i><span class="sr-only">Email</span></a>{% endif %}
+      {% if m.x and m.x != "" %}<a class="ico ico-x" href="{{ m.x }}" title="X" target="_blank" rel="noopener"><i class="fab fa-x-twitter" aria-hidden="true"></i><span class="sr-only">X</span></a>{% endif %}
       {% if m.acm and m.acm != "" %}<a class="ico ico-acm" href="{{ m.acm }}" title="ACM Digital Library" target="_blank" rel="noopener"><i class="ai ai-acmdl" aria-hidden="true"></i><span class="sr-only">ACM Digital Library</span></a>{% endif %}
       {% if m.researchgate and m.researchgate != "" %}<a class="ico ico-rg" href="{{ m.researchgate }}" title="ResearchGate" target="_blank" rel="noopener"><i class="ai ai-researchgate" aria-hidden="true"></i><span class="sr-only">ResearchGate</span></a>{% endif %}
-      {% if m.researchmap and m.researchmap != "" %}<a class="ico ico-rmap" href="{{ m.researchmap }}" title="researchmap" target="_blank" rel="noopener"><span class="rmap-txt" aria-hidden="true">rm</span><span class="sr-only">researchmap</span></a>{% endif %}
-      {% if m.website and m.website != "" %}<a class="ico ico-web" href="{{ m.website }}" title="Webpage" target="_blank" rel="noopener"><i class="fas fa-globe" aria-hidden="true"></i><span class="sr-only">Webpage</span></a>{% endif %}
       {% if m.university and m.university != "" %}<a class="ico ico-utokyo" href="{{ m.university }}" title="大学ページ" target="_blank" rel="noopener"><i class="fas fa-university" aria-hidden="true"></i><span class="sr-only">大学ページ</span></a>{% endif %}
-      {% if m.x and m.x != "" %}<a class="ico ico-x" href="{{ m.x }}" title="X" target="_blank" rel="noopener"><i class="fab fa-x-twitter" aria-hidden="true"></i><span class="sr-only">X</span></a>{% endif %}
       {% if m.instagram and m.instagram != "" %}<a class="ico ico-ig" href="{{ m.instagram }}" title="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">Instagram</span></a>{% endif %}
       {% if m.linkedin and m.linkedin != "" %}<a class="ico ico-li" href="{{ m.linkedin }}" title="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a>{% endif %}
     </div>
