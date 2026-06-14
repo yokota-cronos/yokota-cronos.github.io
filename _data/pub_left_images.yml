@@ -1,0 +1,6 @@
+# 動画(YouTube)が無い論文で、左側に静止画を表示するためのマッピング。
+# キー: 論文タイトル（publications.csv の title と完全一致）。
+# 値:   images/publications/ に置いた画像ファイル名。
+# ※ publications.csv はスプレッドシート同期で上書きされるため、左画像はこの別ファイルで管理する。
+
+"picoRing dual: ultralow-power bimanual ring controllers for everyday AR": "picoring_dual.jpg"
